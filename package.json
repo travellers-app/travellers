@@ -1,0 +1,21 @@
+{
+  "name": "travellers",
+  "version": "1.0.0",
+  "description": "## description #### As a Traveller wants to use my car or  public transprtation through the trip , I want get good knowldge about locations (maps) , weather, public transprtation , hotels ,car services (strech Goal) so that  the application will provide me with the information based on the destinations I want .",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/travellers-app/travellers.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/travellers-app/travellers/issues"
+  },
+  "homepage": "https://github.com/travellers-app/travellers#readme"
+}
