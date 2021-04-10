@@ -26,9 +26,26 @@ app.listen(PORT, () => {
 });
 app.get('/',homePage);
 app.get('/search',searchPage);
+app.get('/location',getLocation);
+app.get('/weather',getWeather);
+app.get('/hotels',getHotels);
+app.get('/resturants',getResturants);
+app.get('/touristical',getTouristical);
 app.get('/user',userPage);
 app.get('/about',aboutPage);
 function homePage(request,response){}
 function searchPage(request,response){}
+function getWeather(request,response){}
+function getLocation(request,response){}
+function getHotels(request,response){}
+function getResturants(request,response){}
+function getTouristical(request,response){}
 function userPage(request,response){}
 function aboutPage(request,response){}
+// calender (exists)
+// city-search (autocomplete => stretch goal)
+// location => insert the city name => API => long. + lat. => stretch goal
+// weather => weather api => {"weather_descriptions","sunrise":,"sunset","temperature":,"wind_speed","humidity"}
+// hotels => amadeus api => mohammed-ashor
+// resturants => yelp api => raneem
+// touristical monuments ?? => raneem 
