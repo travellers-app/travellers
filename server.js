@@ -1,5 +1,6 @@
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
+const WEATHER_API_KEY=process.env.WEATHER_API_KEY;
 // const DATABASE_URL = process.env.DATABASE_URL;
 const express = require("express");
 const superagent = require("superagent");
@@ -35,7 +36,7 @@ app.get('/user',userPage);
 app.get('/about',aboutPage);
 function homePage(request,response){}
 function searchPage(request,response){}
-function getWeather(request,response){}
+
 function getLocation(request,response){}
 function getHotels(request,response){}
 function getResturants(request,response){}
@@ -49,3 +50,34 @@ function aboutPage(request,response){}
 // hotels => amadeus api => mohammed-ashor
 // resturants => yelp api => raneem
 // touristical monuments ?? => raneem 
+let arrayWeatherObject=[];
+function Weather (city,temperature,descriptions,wind_speed,humidity){
+    this.city=city;
+    this.temperature=temperature;
+    this.descriptions=descriptions;
+    this.wind_speed=wind_speed;
+    this.humidity=humidity;
+    arrayWeatherObject.push(this);
+}
+
+function getWeather(request,response){
+    // let city = request.query.city;
+    
+    let url = `https://api.weatherbit.io/v2.0/forecast/daily?city=amman&limit=4&key=${WEATHER_API_KEY}`;
+    superagent.get(url).then(data=>{
+        let weatherData=data.body.data;
+       for (i=0;i<3;i++){
+        let temp = weatherData[i].temp;
+        let desc = weatherData[i].weather.description;
+        let windSpeed=weatherData[i].wind_spd;
+        let humidity= weatherData[i].rh;
+        // console.log(temp);
+        // console.log(desc);
+        // console.log(windSpeed);
+        // console.log(humidity);
+        new Weather('' , temp,desc,windSpeed,humidity);
+              }
+        // console.log(arrayWeatherObject);
+        response.send(arrayWeatherObject);
+    })
+}
