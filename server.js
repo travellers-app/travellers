@@ -36,7 +36,7 @@ app.get('/about',aboutPage);
 function homePage(request,response){}
 function searchPage(request,response){}
 function getWeather(request,response){}
-function getLocation(request,response){}
+
 function getHotels(request,response){}
 function getResturants(request,response){}
 function getTouristical(request,response){}
@@ -49,3 +49,31 @@ function aboutPage(request,response){}
 // hotels => amadeus api => mohammed-ashor
 // resturants => yelp api => raneem
 // touristical monuments ?? => raneem 
+
+
+function getLocation(request,response){
+    const city = request.query.city;
+    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.GEOCODE_API_KEY}&city=${city}&format=json&limit=1`;
+    superagent.get(url)
+    .then(data=>{
+        const geoData= data.body[0];
+        const locationInfo = new Location(city, geoData);
+    });
+    response.send(Location.all[0]);
+
+}
+
+
+
+
+function Location(city, info) {
+    this.search_query = city;
+    this.formatted_query = info.display_name;
+    this.latitude = info.lat;
+    this.longitude = info.lon;
+    Location.all.push(this);
+  }
+  Location.all=[];
+
+
+
