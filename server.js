@@ -21,6 +21,7 @@ app.set('view engine', 'ejs');
 // }).catch(error => {
 //     console.log("client connction faild");
 // })
+
 app.listen(PORT, () => {
     console.log('we are listening to port 3000')
 });
@@ -29,7 +30,7 @@ app.get('/search',searchPage);
 app.get('/location',getLocation);
 app.get('/weather',getWeather);
 app.get('/hotels',getHotels);
-app.get('/resturants',getResturants);
+app.get('/resturants',handleYelpRequest);
 app.get('/touristical',getTouristical);
 app.get('/user',userPage);
 app.get('/about',aboutPage);
@@ -38,7 +39,24 @@ function searchPage(request,response){}
 function getWeather(request,response){}
 function getLocation(request,response){}
 function getHotels(request,response){}
-function getResturants(request,response){}
+
+
+    function handleYelpRequest(req, res) {
+        const yelpKey=process.env.YELP;
+        city = req.query.city;
+        const url = `https://api.yelp.com/v3/businesses/search?location=${city}`;
+        superagent.get(url)
+          .set('Authorization', `Bearer ${yelpKey}`)
+          .then(yelp => {
+              const yelpArr = yelp.body.businesses.map(yelpData => {
+                  return new Yelp(yelpData);
+            });
+            console.log( yelpArr)
+            res.status(200).send(yelpArr);
+          })
+          .catch((err) => anyErrorHandler(err, req, res));
+    }
+
 function getTouristical(request,response){}
 function userPage(request,response){}
 function aboutPage(request,response){}
@@ -49,3 +67,15 @@ function aboutPage(request,response){}
 // hotels => amadeus api => mohammed-ashor
 // resturants => yelp api => raneem
 // touristical monuments ?? => raneem 
+function Yelp(yelpData) {
+  this.name = yelpData.name;
+  this.price = yelpData.price;
+  this.rating = yelpData.rating;
+  this.imgURL = yelpData.image_url;
+  this.url = yelpData.url;
+}
+
+
+function anyErrorHandler(error, req, res) {
+    res.status(500).send(error);
+  }
