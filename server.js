@@ -1,6 +1,7 @@
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const WEATHER_API_KEY=process.env.WEATHER_API_KEY;
+const yelpKey = process.env.yelpKey;
 // const DATABASE_URL = process.env.DATABASE_URL;
 const express = require("express");
 const superagent = require("superagent");
@@ -22,6 +23,7 @@ app.set('view engine', 'ejs');
 // }).catch(error => {
 //     console.log("client connction faild");
 // })
+
 app.listen(PORT, () => {
     console.log('we are listening to port 3000')
 });
@@ -29,17 +31,36 @@ app.get('/',homePage);
 app.get('/search',searchPage);
 app.get('/location',getLocation);
 app.get('/weather',getWeather);
-app.get('/hotels',getHotels);
-app.get('/resturants',getResturants);
+// app.get('/hotels',getHotels);
+app.get('/resturants',handleYelpRequest);
 app.get('/touristical',getTouristical);
 app.get('/user',userPage);
 app.get('/about',aboutPage);
 function homePage(request,response){}
 function searchPage(request,response){}
 
-function getLocation(request,response){}
-function getHotels(request,response){}
-function getResturants(request,response){}
+
+
+
+
+
+
+    function handleYelpRequest(req, res) {
+        const yelpKey=process.env.YELP;
+        city = req.query.city;
+        const url = `https://api.yelp.com/v3/businesses/search?location=${city}`;
+        superagent.get(url)
+          .set('Authorization', `Bearer ${yelpKey}`)
+          .then(yelp => {
+              const yelpArr = yelp.body.businesses.map(yelpData => {
+                  return new Yelp(yelpData);
+            });
+            console.log( yelpArr)
+            res.status(200).send(yelpArr);
+          })
+          .catch((err) => anyErrorHandler(err, req, res));
+    }
+
 function getTouristical(request,response){}
 function userPage(request,response){}
 function aboutPage(request,response){}
@@ -81,3 +102,52 @@ function getWeather(request,response){
         response.send(arrayWeatherObject);
     })
 }
+
+
+
+function getLocation(request,response){
+    const city = request.query.city;
+    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.GEOCODE_API_KEY}&city=${city}&format=json&limit=1`;
+    superagent.get(url)
+    .then(data=>{
+        const geoData= data.body[0];
+        const locationInfo = new Location(city, geoData);
+        response.send(Location.all[Location.all.length-1])
+    })
+    .catch((error) => {
+        console.log(error.message);
+        response.status(500).send('So sorry, something went wrong.');
+      });
+    
+
+
+}
+
+
+
+
+function Location(city, info) {
+    this.search_query = city;
+    this.formatted_query = info.display_name;
+    this.latitude = info.lat;
+    this.longitude = info.lon;
+    Location.all.push(this);
+  }
+  Location.all=[];
+
+
+
+
+function Yelp(yelpData) {
+  this.name = yelpData.name;
+  this.price = yelpData.price;
+  this.rating = yelpData.rating;
+  this.imgURL = yelpData.image_url;
+  this.url = yelpData.url;
+}
+
+
+function anyErrorHandler(error, req, res) {
+    res.status(500).send(error);
+  }
+ 
