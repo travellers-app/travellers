@@ -77,7 +77,7 @@ function getLocation(request,response){
     .then(data=>{
         const geoData= data.body[0];
         const locationInfo = new Location(city, geoData);
-        response.send(Location.all[Location.all.length-1])
+        response.send(locationInfo);
     })
     .catch((error) => {
         console.log(error.message);
