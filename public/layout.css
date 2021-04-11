@@ -1,0 +1,67 @@
+header{
+    height:90px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    background-color: black;
+    color:white
+}
+
+h1{
+    height: 100%;
+    width:fit-content;
+    margin-left: 20px;
+    align-self: center;
+    font-size: 54px;
+}
+
+ul{
+    margin-top: 12px;
+    margin-right: 20px;
+}
+
+li{
+    display: inline;
+    text-decoration: none;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#slider{
+    height: 25%;
+}
+
+#container{
+    height: 45%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+.card{
+    height: 50%;
+    width: 30%;
+    margin-top: 30px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+#logo{
+    margin-left: 15px;
+    margin-top: 14px;
+    height: 60px;
+    width:60px;
+    float: left;
+}
+
+h2{
+    font-size: 30px;
+    margin-top: 26px;
+    margin-right: 5px;
+}
+
+footer{
+    height: 30%;
+}

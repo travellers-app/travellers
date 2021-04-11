@@ -33,7 +33,9 @@ app.get('/resturants',getResturants);
 app.get('/touristical',getTouristical);
 app.get('/user',userPage);
 app.get('/about',aboutPage);
-function homePage(request,response){}
+function homePage(request,response){
+    response.render('main');
+}
 function searchPage(request,response){}
 function getWeather(request,response){}
 function getLocation(request,response){}
