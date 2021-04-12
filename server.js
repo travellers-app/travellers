@@ -1,11 +1,14 @@
+'use strict';
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL;
 const NODE_ENV = process.env.NODE_ENV;
 // const WEATHER_API_KEY=process.env.WEATHER_API_KEY;
 // const yelpKey = process.env.yelpKey;
-// const key = process.env.ACCESS_TOKEN;
 // const DATABASE_URL = process.env.DATABASE_URL;
+let key; // this variable is to set the token key
+const clientId = process.env.CLIENT_ID;
+const clientSecret = process.env.CLIENT_PASSWORD;
 const express = require("express");
 const superagent = require("superagent");
 const cors = require("cors");
@@ -13,7 +16,6 @@ const pg = require("pg");
 const methodOverride = require("method-override");
 const app = express();
 const pm = require('postman');
-const unirest = require('unirest')
 const { response, request } = require('express');
 app.use(cors());
 app.use(express.static("public"));
@@ -29,33 +31,53 @@ client.connect().then(() => {
 }).catch(error => {
     console.log("client connction faild");
 })
+
+
 app.get('/', homePage);
+app.get('/token', getToken); // this path that we will go to to get the token for the hotels and it will redirect to the hotel path automatically
+app.get('/token2', getToken2); // this path that we will go to to get the token for the touristic and it will redirect to the touristic path automatically
 app.get('/search', searchPage);
 app.get('/location', getLocation);
 app.get('/weather', getWeather);
-app.get('/hotels', getHotels);
+app.get('/hotels', getHotels); // 'token' will redirect to this path and render hotels
 app.get('/resturants', handleYelpRequest);
-app.get('/touristic', getTouristic);
+app.get('/touristic', getTouristic); // 'token2' will redirect to this path and render tours
 app.get('/user', userPage);
 app.get('/about', aboutPage);
 function homePage(request, response) { }
-function searchPage(request, response) { }
+function searchPage(request, response) {
+    response.render('search');
+}
 function userPage(request, response) { }
 function aboutPage(request, response) { }
 function homePage(request, response) {
     response.render('main');
 }
+
+function getToken(request, response) {
+    const tokenUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
+    superagent.post(tokenUrl)
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({ "grant_type": "client_credentials", "client_id": clientId, "client_secret": clientSecret })
+        .then(obj => {
+            key = obj.body.access_token
+            response.redirect('/hotels');
+        }).catch(error => (console.log('Token ' + error)))
+}
+
+// these variables are only for testing and will be replaced with the data coming from location data
+let lon = 0.1278;
+let lat = 51.5074;
+
 function getHotels(request, response) {
-    // let cityCode = request.query;
-    let cityCode = 'LON';
-    const url = `https://test.api.amadeus.com/v2/shopping/hotel-offers?cityCode=${cityCode}`;
+    const url = `https://test.api.amadeus.com/v2/shopping/hotel-offers?latitude=${lat}&longitude=${lon}&radius=5&radiusUnit=KM`;
     superagent.get(url).set('Authorization', `Bearer ${key}`).then(hotelsObj => {
         let newHotel = hotelsObj.body.data.map(offer => {
             return new Hotels(offer);
         })
         response.json(newHotel)
 
-    }).catch(error => console.log('error'))
+    }).catch(error => console.log(error))
 }
 function Hotels(offer) {
     let desc = offer.hotel.description;
@@ -68,16 +90,25 @@ function Hotels(offer) {
     image ? this.picture = image[0].uri : this.picture = 'Media Unavailable';
     this.price = pay.total + ' ' + pay.currency;
 }
+
+function getToken2(request, response) {
+    const tokenUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
+    superagent.post(tokenUrl)
+        .set('Content-Type', 'application/x-www-form-urlencoded')
+        .send({ "grant_type": "client_credentials", "client_id": clientId, "client_secret": clientSecret })
+        .then(obj => {
+            key = obj.body.access_token
+            response.redirect('/touristic');
+        }).catch(error => (console.log('Token ' + error)))
+}
 function getTouristic(request, response) {
-    let lat = request.query.latitude;
-    let lon = request.query.longitude;
     const url = `https://test.api.amadeus.com/v1/shopping/activities?longitude=${lon}&latitude=${lat}&radius=1`;
     superagent.get(url).set('Authorization', `Bearer ${key}`).then(toursObj => {
         let newTour = toursObj.body.data.map(tour => {
             return new Tours(tour);
         })
         response.json(newTour);
-    }).catch(error => (log('error')));
+    }).catch(error => (console.log(error)));
 }
 function Tours(tour) {
     let pay = tour.price;
@@ -90,17 +121,19 @@ function Tours(tour) {
 
 }
 function handleYelpRequest(req, res) {
-    const yelpKey = process.env.YELP;
-    city = req.query.city;
+  
+    const city = req.query.city;
+    console.log(city)
     const url = `https://api.yelp.com/v3/businesses/search?location=${city}`;
     superagent.get(url)
         .set('Authorization', `Bearer ${yelpKey}`)
         .then(yelp => {
+          console.log('after',yelp)
             const yelpArr = yelp.body.businesses.map(yelpData => {
                 return new Yelp(yelpData);
             });
             console.log(yelpArr)
-            res.status(200).send(yelpArr);
+            res.json(yelpArr);
         })
         .catch((err) => anyErrorHandler(err, req, res));
 }
@@ -148,7 +181,7 @@ function getLocation(request, response) {
         .then(data => {
             const geoData = data.body[0];
             const locationInfo = new Location(city, geoData);
-            response.send(locationInfo);
+            response.json(locationInfo);
         })
         .catch((error) => {
             console.log(error.message);
