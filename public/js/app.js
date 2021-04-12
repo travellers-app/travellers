@@ -2,8 +2,6 @@ console.log("we are connected");
 const search_query = 'london';
 let lon;
 let lat;
-// let lon = 0.1278;
-// let lat = 51.5074;
 const ajaxSettingsOne = {
     method: 'get',
     dataType: 'json',
@@ -74,12 +72,29 @@ function getHotels() {
         };
         $.ajax('/token', ajaxSettingsTwo)
             .then(result => {
-                console.log(result)
+                result.forEach(data=>{
+                    new Hotel(data.picture,data.name,data.description,data.rate,data.contact,data.price)
+                })
             })
             .catch(error => {
                 showError(error);
             });
-    });
+});
+function Hotel(img,name,discription,rate,contact,price){
+    this.img = img,
+    this.name = name,
+    this.discription = discription,
+    this.rate = rate,
+    this.contact = contact,
+    this.price = price,
+    this.render(this)
+}
+Hotel.prototype.render = (source) =>{
+    let cardTemplate = $('#hotTemp').html();
+    let cardHtmlData = Mustache.render(cardTemplate,source);
+    console.log(cardHtmlData)
+    $('#hotel').append(cardHtmlData);
+}
 //     console.log(ajaxSettingsTwo)
 //     $.ajax('/token', ajaxSettingsTwo)
 //         .then(result => {
