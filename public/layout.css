@@ -56,6 +56,38 @@ li{
     float: left;
 }
 
+
+/* -------------------------------------------------------user page start---------------------------------------------- */
+
+#login-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 50vh;
+    margin: auto;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------------user page finish---------------------------------------------- */
+
 h2{
     font-size: 30px;
     margin-top: 26px;

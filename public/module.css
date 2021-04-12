@@ -3,6 +3,104 @@
  /* HTML Nav Styles */
  /* HTML Nav Styles */
  /* HTML Nav Styles */
+
+ /* ------------------------------------------------user page Start----------------------------------------------------------- */
+
+.loginInput{
+height: 40px;
+width: 400px;
+
+}
+
+#login-form{
+  display: flex;
+  flex-flow: column wrap;
+align-items: center;
+justify-content: center;
+width: 50%;
+}
+
+
+#login-button{
+margin-left: 150px;
+
+}
+#user-page-main{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  /* border: springgreen solid; */
+}
+#user-data-buttons{
+  /* border:  solid white; */
+  height: 100vh;
+  width: 10%;
+  order: 0;
+  /* margin: auto; */
+}
+
+.user-buttons{
+  width: 200px;
+  font-size: larger;
+  /* text-justify: center;  */
+ border: solid black;
+ margin:20px;
+ text-align: center;
+ font-weight: bolder;
+ padding: 0;
+ 
+}
+
+
+
+#user-data-container{
+  display: flex;
+  padding: 20px;
+  /* border: red solid; */
+  width: 99%;
+  height: 50px;
+  color: white;
+  order: 0;
+  justify-self: flex-end;
+  justify-content: center;
+
+}
+
+.details-container{
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  height: 250px;
+  /* border: red solid; */
+  justify-content: center;
+  order: 2;
+}
+
+#container-of-spans{
+ 
+  /* border: indigo solid; */
+  height: 100%;
+  /* justify-self: flex-end; */
+  flex-flow: column wrap;
+  width: 100%;
+  order: 3;
+}
+#red-pu{
+  display: flex;
+  width: 89%;
+  flex-direction: column;
+}
+#details-container{
+  height: 100%;
+  /* border: springgreen solid; */
+}
+#Your-trips-details{
+  font-size: 70px;
+  font-size: 70px;
+  margin: auto;
+}
+ /* ------------------------------------------------user page finished----------------------------------------------------------- */
  menuitem{
     text-align: center;
  }

@@ -22,12 +22,12 @@ app.set('view engine', 'ejs');
 const options = NODE_ENV === 'production' ? { connectionString: DATABASE_URL, ssl: { rejectUnauthorized: false } } : { connectionString: DATABASE_URL };
 const client = new pg.Client(options);
 client.on('error', error => { throw error; })
-client.connect().then(() => {
+// client.connect().then(() => {
     app.listen(PORT, () => {
         console.log('we are listening to port 3000')
-    })
-}).catch(error => {
-    console.log("client connction faild");
+    // })
+// }).catch(error => {
+//     console.log("client connction faild");
 })
 app.get('/', homePage);
 app.get('/search', searchPage);
@@ -40,7 +40,11 @@ app.get('/user', userPage);
 app.get('/about', aboutPage);
 function homePage(request, response) { }
 function searchPage(request, response) { }
-function userPage(request, response) { }
+function userPage(req, res) {
+
+res.render('userpage')
+
+ }
 function aboutPage(request, response) { }
 function homePage(request, response) {
     response.render('main');
