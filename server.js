@@ -40,9 +40,9 @@ app.get('/user', userPage);
 app.get('/about', aboutPage);
 function homePage(request, response) { }
 function searchPage(request, response) { }
-function userPage(req, res) {
+function userPage(request, response) {
+response.render('userpage');
 
-res.render('userpage')
 
  }
 function aboutPage(request, response) { }
