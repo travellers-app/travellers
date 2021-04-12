@@ -31,6 +31,7 @@ app.listen(PORT, () => {
     console.log('we are listening to port 3000')
 });
 
+
 app.get('/', homePage);
 app.get('/search', searchPage);
 app.get('/location', getLocation);
