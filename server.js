@@ -23,15 +23,15 @@ app.use(methodOverride("_method"));
 app.set('view engine', 'ejs');
 const options = NODE_ENV === 'production' ? { connectionString: DATABASE_URL, ssl: { rejectUnauthorized: false } } : { connectionString: DATABASE_URL };
 const client = new pg.Client(options);
-// client.on('error', error => { throw error; })
-// client.connect().then(() => {
+client.on('error', error => { throw error; })
+client.connect().then(() => {
 
 
     app.listen(PORT, () => {
         console.log('we are listening to port 3000')
-    // })
-// }).catch(error => {
-//     console.log("client connction faild");
+    })
+}).catch(error => {
+    console.log("client connction faild");
 })
 
 
@@ -48,17 +48,28 @@ app.get('/user', userPage);
 app.get('/about', aboutPage);
 function homePage(request, response) { }
 function searchPage(request, response) { }
-
+//----------------- user page start ------------------------------------------------
 
 function userPage(request, response) {
-response.render('userpage');
+    // let userName = request.query.name;
+    let sql =`select pass,city,hotel,resturant1img,resturant1url,returant2,touristic1,touristic1img,discrp1 from trips where username=$1`;
+    let arraySql =['alaa'];
+    client.query(sql,arraySql).then(data=>{
+        // console.log(data.rows);
+        let resultsDataBase= data.rows[0];
+console.log(resultsDataBase);
 
+   
+response.render('userpage', {reviewResult:resultsDataBase});
+ })
 
  }
+ // ------------------user page finish ------------------------------------------------
+
+
 function searchPage(request, response) {
     response.render('search');
 }
-function userPage(request, response) { }
 function aboutPage(request, response) { }
 function homePage(request, response) {
     response.render('main');
@@ -217,9 +228,6 @@ function anyErrorHandler(error, req, res) {
 // hotels => amadeus api => mohammed-ashor
 // resturants => yelp api => raneem
 // touristical monuments ?? => raneem 
-
-
-
 
 
 

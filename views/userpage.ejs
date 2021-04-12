@@ -61,18 +61,31 @@
 
 <div id="container-of-spans">
 
+ 
+    <section id="details-hotels">
+        <h3><%= reviewResult.hotel %></h3>
 
+        <img src="<%= reviewResult.resturant1img %>">
 
-    <section id="details-container">
-        <img src="https://via.placeholder.com/400"  width="400px" height="400px
-        " alt="" >
+        <p>desc</p>
+    </section>
+    
+    <section id="details-resturants">
+        <h3><%= reviewResult.hotel %></h3>
 
+        <img src="<%= reviewResult.resturant1img %>">
 
-
-
+        <p>desc</p>
     </section>
 
+    <section id="details-touristical">
+        <h3><%= reviewResult.hotel %></h3>
 
+        <img src="<%= reviewResult.resturant1img %>">
+
+        <p>desc</p>
+    </section>
+  
 
 </div>
 
@@ -95,7 +108,7 @@
 
 
 <%- include('partials/footer') %>
-
-    
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>
