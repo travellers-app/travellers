@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('partials/head',{title:'home'}) %>
+<body>
+    <%- include('partials/header') %>
+    <div id="slider">slider</div>
+    <div>
+        <img src="" alt="">
+        <form action="/reg">
+            <fieldset>
+                <label for="userName">user name</label>
+                <input type="text" name="userName" placeholder="user name">
+            </fieldset>
+            <fieldset>
+                <label for="passWord">pass word</label>
+                <input type="text" name="passWord" placeholder="pass word">
+            </fieldset>
+        </form>
+    </div>
+    <div id="container">
+        <div class="card">card1</div>
+        <div class="card">card2</div>
+        <div class="card">card3</div>
+        <div class="card">card4</div>
+        <div class="card">card5</div>
+        <div class="card">card6</div>
+    </div>
+    <%- include('partials/footer') %>
+</body>
+</html>
