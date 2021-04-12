@@ -2,8 +2,10 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL;
 const NODE_ENV = process.env.NODE_ENV;
-// const WEATHER_API_KEY=process.env.WEATHER_API_KEY;
-// const yelpKey = process.env.yelpKey;
+const WEATHER_API_KEY=process.env.WEATHER_API_KEY;
+const yelpKey = process.env.YELP;
+console.log(yelpKey)
+
 // const key = process.env.ACCESS_TOKEN;
 // const DATABASE_URL = process.env.DATABASE_URL;
 const express = require("express");
@@ -92,17 +94,19 @@ function Tours(tour) {
 
 }
 function handleYelpRequest(req, res) {
-    const yelpKey = process.env.YELP;
-    city = req.query.city;
+  
+    const city = req.query.city;
+    console.log(city)
     const url = `https://api.yelp.com/v3/businesses/search?location=${city}`;
     superagent.get(url)
         .set('Authorization', `Bearer ${yelpKey}`)
         .then(yelp => {
+          console.log('after',yelp)
             const yelpArr = yelp.body.businesses.map(yelpData => {
                 return new Yelp(yelpData);
             });
             console.log(yelpArr)
-            res.status(200).send(yelpArr);
+            res.json(yelpArr);
         })
         .catch((err) => anyErrorHandler(err, req, res));
 }
@@ -150,7 +154,7 @@ function getLocation(request, response) {
         .then(data => {
             const geoData = data.body[0];
             const locationInfo = new Location(city, geoData);
-            response.send(locationInfo);
+            response.json(locationInfo);
         })
         .catch((error) => {
             console.log(error.message);
