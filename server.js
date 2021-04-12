@@ -39,7 +39,9 @@ app.get('/touristic', getTouristic);
 app.get('/user', userPage);
 app.get('/about', aboutPage);
 function homePage(request, response) { }
-function searchPage(request, response) { }
+function searchPage(request, response) {
+    response.render('search');
+}
 function userPage(request, response) { }
 function aboutPage(request, response) { }
 function homePage(request, response) {
