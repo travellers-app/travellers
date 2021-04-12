@@ -107,3 +107,61 @@ fieldset{
 footer{
     height: 30%;
 }
+
+#serachDiv{
+    margin: auto;
+    height: 45%;
+    width: 100%;
+    box-sizing: border-box;
+    border: black solid 1px;
+    background-image: url(http://www.hustlermoneyblog.com/wp-content/uploads/2016/08/Travel-Background.png);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    height: 100%;
+    width: 100%;
+}
+
+.searchInp{
+    height: 40px;
+    width:200px;
+    border-radius: 20px;
+}
+
+#searchBtu{
+    margin-top: 20px;
+    height: 40px;
+    width:200px;
+    border-radius: 20px;
+    position: absolute;
+    left: 40%;
+}
+
+#resultDiv{
+    margin: auto;
+    height: 30%;
+    width: 70%;
+    box-sizing: border-box;
+    border: black solid 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.resData{
+    width:30%;
+    height: 80%;
+    box-sizing: border-box;
+    border: black solid 1px;
+    overflow: scroll;
+}
+
+#hotelemp{
+    width:100%;
+    height: 100%;
+}
