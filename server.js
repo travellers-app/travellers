@@ -3,8 +3,8 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL;
 const NODE_ENV = process.env.NODE_ENV;
-// const WEATHER_API_KEY=process.env.WEATHER_API_KEY;
-// const yelpKey = process.env.yelpKey;
+const WEATHER_API_KEY=process.env.WEATHER_API_KEY;
+const yelpKey = process.env.YELP;
 // const DATABASE_URL = process.env.DATABASE_URL;
 let key; // this variable is to set the token key
 const clientId = process.env.CLIENT_ID;
@@ -160,7 +160,7 @@ function getWeather(request, response) {
     let url = `https://api.weatherbit.io/v2.0/forecast/daily?city=amman&limit=4&key=${WEATHER_API_KEY}`;
     superagent.get(url).then(data => {
         let weatherData = data.body.data;
-        for (i = 0; i < 3; i++) {
+        for (let i = 0; i < 3; i++) {
             let temp = weatherData[i].temp;
             let desc = weatherData[i].weather.description;
             let windSpeed = weatherData[i].wind_spd;

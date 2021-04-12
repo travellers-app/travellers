@@ -1,5 +1,5 @@
 console.log("we are connected");
-const search_query= 'rome';
+const search_query= 'seattle';
 
 
 
@@ -57,7 +57,7 @@ function getLocation() {
       dataType: 'json',
       data: {city:search_query},
     };
-    $.ajax('/touristic', ajaxSettings)
+    $.ajax('/token2', ajaxSettings)
       .then(result => {
         console.log(result)
       })
@@ -72,7 +72,7 @@ function getLocation() {
       dataType: 'json',
       data: {city:search_query},
     };
-    $.ajax('/hotels', ajaxSettings)
+    $.ajax('/token', ajaxSettings)
       .then(result => {
         console.log(result)
       })
@@ -85,3 +85,5 @@ function getLocation() {
   getLocation()
   getWeather()
   getResturants()
+  getTouristic()
+  getHotels()
