@@ -1,0 +1,148 @@
+# Team Name : Travellers .
+## Project : Paradise Road.
+
+Team leader :Hisham 
+
+Project Members:
+
+Alaa Al-Hamadan
+Mohammad Ashour
+Raneem Abdulazeez
+Zakeyah
+
+Desription:
+
+
+As a Traveller in Europe wants to use my car or  public transprtation through the trip , I want get good knowldge about locations
+(maps) , weather, public transprtation , hotels ,car services (strech Goal) so that  the application will provide me with the information based on the destinations I want .
+
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Communication Plan
+Before beginning to write code, determine how your group will communicate with each other, both in person and online.
+
+Why:
+
+This is not an individual effort. Make sure everyone knows how the group will communicate with each other and that everyone feels comfortable speaking up.
+
+Add your communication plan to your Group Agreement. Some things to consider:
+
+How will you ensure that you are creating a safe environment where everyone feels comfortable speaking up?
+
+
+
+commuincation plan :
+
+
+How will you communicate after hours and on the weekend?
+yes it's okay for all of us to talk about the Project during weekend, through the slack channel . 
+
+thurday :9:00 pm  .....Tasks :2 or 3 people (who don't submmiting )
+saturday : 9:00pm
+sunday -tuesday :  9-5 
+
+
+What is your strategy for ensuring everyone's voices are heard?
+-give each one the chance to talk and express his /her ideas , and be respected even if the ideas were not accepted by the other team member.
+-encourage the members who don't like talking to express their ideas without forcing them to do that (ask them if they have any concerns )
+-make sure to get agreement from every memebr in the team to apply any idea .
+
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+-Git plan :
+
+The master branch should not contain any broken code. From the master branch, create a development branch. This will be the branch where several team members can combine their code and it can be tested prior to merging into the master branch. If everything is functioning correctly on the development branch, the changes can be merged into master.
+
+
+All work should be on a feature branch with a meaningful name. Feature branches should be created off of the development branch. When the feature is completed, create a pull request from your feature branch to the development branch.
+
+
+
+When you start a new feature and any time a pull request is merged into the development branch, make sure that your local development branch is up to date. Check out the development branch, then pull the development branch. Create your new branch off of the updated development branch.
+
+
+
+Whenever a pull request is merged from development to master, check out your local master branch and then pull the master branch.
+
+
+
+If a pull request from a teammate has been merged and you working on a branch but are not ready to push your changes, you can still pull those changes while continuing to work on your feature branch. To do so, add and commit any changes on your local feature branch. Check out your master or development branch and pull the changes. Then, check out your feature branch and run the command git merge master if the master branch was pulled and git merge development if the development branch was pulled.
+
+Handle merge conflicts, if there are any. Check all of your project files for the markers that indicate merge conflicts, the >>>>>>>>> and HEAD lines of code. Edit the code to remove the redundancies causing the merge conflict, and eliminate the markers. Add and commit the files where the merges were resolved.
+
+Add and commit your code regularly. Use meaningful commit messages. As a team, decide on a convention to follow for commit messages. Do not include sarcastic comments, vague messages, or profanity.
+
+
+
+
+Pull Requests
+When your features are completed and tested on your local branch, you are ready to add, commit, and push those changes to GitHub. Then, create a pull request from your feature branch to the development branch. Do not merge your own pull request.
+
+
+If the pull request is not ready to be merged, leave detailed comments and request changes from the creator of the pull request.
+
+When the pull request is merged to development, every team member should check out their own local development branch and pull the changes. Then, test the code in the browser to ensure that the desired features have been implemented correctly.
+
+
+Periodically, as determined by your team, make a pull request from the development branch to the master branch and follow the same process to test the changes to the master branch on everyone's local computers. Merging pull requests to the master branch should also update the deployed site, so confirm functionality there as well.
+
+
+
+After a pull request is merged, delete the branch on GitHub.
+
+
+
+
+
+Deployment
+Deploy your project on Heroku and be prepared to present from the deployed version of your site. Associate your Heroku instance with your GitHub repository. Enable automatic deploys from your master branch. Also connect your production deployment to a custom domain name (don't use a .app TLD unless you are prepared to pay for SSL on your Heroku instance).
+
+
+Deploy your site on the first day.
+
+
+After the initial repository creation, scaffold out a basic server.js and basic index.ejs file with a heading element or something similar. Then push this code to GitHub and deploy it as a "proof of life" that the deployment worked correctly. As you continue to work on your project, the deployed site will update any time the team merges a pull request into the master branch. You also have the option to set this to a different branch, although it is most common to deploy from the master branch.
+
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CONFLICTS 
+
+
+Conflict has many sources:
+
+Disputes about inequities, broken promises, preferential treatment : -we all agreed that we will not treat each other in a wrong way or inelegant way , thus everything van be expressed or solved in polite way , if this happned , the conflict can be solved by returning to one of the team members or to the TAs and instructor .
+
+
+
+Competition for diminishing resources : everyone should know his /her work clearly , and should have work each (js ,css ,ejs, nodejs) .
+
+
+Fault lines of age, gender, race, craft, status, authority :since we all signed in the contract to respect each other so the one who break this rule going to leave the course.
+
+
+
+
+Expectations, especially when they are unclear or unmet : we will work in pair programming most of the features and define each output in a clear way , and discuss evryday about each detail to be on same page .
+
+
+How will you raise concerns to members who are not adequately contributing ? -ask the member about the problem , if the problem was because of lack of  experience the member shoud work in pair programming and some of the members will help him /her .
+
+if the member has medical issue , we will see how much can work and give them  the minimuim work after discuss that with the instructor ,else , give them a specific task and depend on them to solve it . 
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Git Process
+
+1- project repository
+2- I will share it with my teammates by inviting them as admins
+3- everyone one will work on his/her branch and it will merged first after checking on the deployment branch and after testing it will be merged on the main 
+4 the pull request will be reviewed by two persons
+5- the merging will be done by the team leader
+6- the merge will be done every completed meaningful changes
+7- the merging time will be annouced in slack 
