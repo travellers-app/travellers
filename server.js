@@ -23,8 +23,10 @@ app.use(methodOverride("_method"));
 app.set('view engine', 'ejs');
 const options = NODE_ENV === 'production' ? { connectionString: DATABASE_URL, ssl: { rejectUnauthorized: false } } : { connectionString: DATABASE_URL };
 const client = new pg.Client(options);
-client.on('error', error => { throw error; })
+// client.on('error', error => { throw error; })
 // client.connect().then(() => {
+
+
     app.listen(PORT, () => {
         console.log('we are listening to port 3000')
     // })
@@ -46,6 +48,8 @@ app.get('/user', userPage);
 app.get('/about', aboutPage);
 function homePage(request, response) { }
 function searchPage(request, response) { }
+
+
 function userPage(request, response) {
 response.render('userpage');
 
