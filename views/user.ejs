@@ -1,9 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('partials/head',{title:'home'}) %>
-<body>
-    <%- include('partials/header') %>
-  
-    <%- include('partials/footer') %>
-</body>
+
+    <body>
+        <%- include('partials/header') %>
+            <main>
+                <div id="login-container">
+
+                    <form id="login-form">
+                        <fieldset>
+
+
+                            <input class="loginInput" type="text" placeholder="User Name">
+                            <br>
+                            <br>
+                            <br>
+                            <input  class="loginInput" type="password" placeholder="Passowrd">
+                            <br>
+                            <br>
+                            <br>
+                            <button id="login-button" type="submit">Login</button>
+
+
+
+
+                        </fieldset>
+
+
+                    </form>
+
+
+
+
+
+
+
+
+
+                </div>
+
+
+
+
+
+
+
+            </main>
+
+            <%- include('partials/footer') %>
+        
+
+
+    </body>
+
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+    <script src="/js/app.js"></script>
+
 </html>
