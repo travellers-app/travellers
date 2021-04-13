@@ -72,7 +72,7 @@ margin-left: 150px;
 
   background-color: transparent;
   height: inherit;
-  border: tomato solid;
+  /* border: tomato solid; */
   
 }
 
@@ -119,7 +119,8 @@ margin-left: 150px;
 }
 
 .cardUserPage{
-  border: solid yellow;
+  /* border: solid yellow; */
+  margin: 10px;
   width: 50%;
   
 }
@@ -129,7 +130,7 @@ margin-left: 150px;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
-  border:  green solid;
+  /* border:  green solid; */
   width: 100%;
   order: 3;
 }
