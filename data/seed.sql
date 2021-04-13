@@ -1,7 +1,7 @@
 INSERT INTO trips 
-(username,pass,city,hotel,resturant1img,resturant1url,returant2,touristic1,touristic1img,discrp1)
-values('raneem',1521,'amman','raneem','https://via.placeholder.com/200','url',5,'raneeem','https://via.placeholder.com/200','aaaaaaaaaaa');
+( username, pass , city ,lon ,lat ,hotel, checkin ,checkout ,returant1 ,resturant1img ,resturant1url ,returant2 ,resturant2img , resturant2url ,returant3 ,resturant3img ,resturant3url ,returant4 ,resturant4img ,resturant4url ,touristic1 ,touristic1img ,discrp1 ,touristic2 ,touristic2img ,discrp2 ,touristic3 ,touristic3img ,discrp3 ,touristic4 ,touristic4img ,discrp4 )
+values('alaa',1231,'Irbid',1.222,1.333,'5star','1/1/0000','1/1/0000','aaaa','https://via.placeholder.com/200','url','llll','https://via.placeholder.com/200','url','rrrr','https://via.placeholder.com/200','url','aaaa','https://via.placeholder.com/200','url','1111','https://via.placeholder.com/200','description','2222','https://via.placeholder.com/200','description','3333','https://via.placeholder.com/200','description','4444','https://via.placeholder.com/200','description');
 
 INSERT INTO trips 
-(username,pass,city,hotel,resturant1img,resturant1url,returant2,touristic1,touristic1img,discrp1)
-values('alaa',1521,'amman','raneem','https://via.placeholder.com/200','url',5,'raneeem','https://via.placeholder.com/200','aaaaaaaaaaa');
+( username, pass , city ,lon ,lat ,hotel, checkin ,checkout ,returant1 ,resturant1img ,resturant1url ,returant2 ,resturant2img , resturant2url ,returant3 ,resturant3img ,resturant3url ,returant4 ,resturant4img ,resturant4url ,touristic1 ,touristic1img ,discrp1 ,touristic2 ,touristic2img ,discrp2 ,touristic3 ,touristic3img ,discrp3 ,touristic4 ,touristic4img ,discrp4 )
+values('raneem',1231,'Irbid',1.222,1.333,'5star','1/1/0000','1/1/0000','aaaa','https://via.placeholder.com/200','url','llll','https://via.placeholder.com/200','url','rrrr','https://via.placeholder.com/200','url','aaaa','https://via.placeholder.com/200','url','1111','https://via.placeholder.com/200','description','2222','https://via.placeholder.com/200','description','3333','https://via.placeholder.com/200','description','4444','https://via.placeholder.com/200','description');

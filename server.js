@@ -52,7 +52,7 @@ function searchPage(request, response) { }
 
 function userPage(request, response) {
     // let userName = request.query.name;
-    let sql =`select pass,city,hotel,resturant1img,resturant1url,returant2,touristic1,touristic1img,discrp1 from trips where username=$1`;
+    let sql =`select * from trips where username=$1`;
     let arraySql =['alaa'];
     client.query(sql,arraySql).then(data=>{
         // console.log(data.rows);
