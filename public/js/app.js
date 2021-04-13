@@ -1,3 +1,28 @@
+  $(document).ready(userFunction);
+  $('#details-hotels').hide();
+  $('#details-resturants').hide();
+  $('#details-touristical').hide();
+  function userFunction(){
+    $('#hotels-button').on('click',()=>{
+      $('#details-hotels').show();
+      $('#details-resturants').hide();
+      $('#details-touristical').hide();
+      console.log('1111112')
+    })
+    $('#resturants-button').on('click',()=>{
+      $('#details-hotels').hide();
+      $('#details-resturants').show();
+      $('#details-touristical').hide();
+      console.log('1111113');
+    })
+    $('#touristical-button').on('click',()=>{
+      $('#details-hotels').hide();
+      $('#details-resturants').hide();
+      $('#details-touristical').show();
+      console.log('1111114');
+
+    })
+  }
 console.log("we are connected");
 const search_query = 'london';
 let lon;

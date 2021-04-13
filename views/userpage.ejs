@@ -48,31 +48,93 @@
 
 
 <div id="user-data-container">
-
-
+    <h2 id="Your-trips-details">
+        <%=reviewResult.username%>
+    </h2>
     <h2 id="Your-trips-details">
         Your trips details 
     </h2>
-
  
 </div>
 
-
-
 <div id="container-of-spans">
+    <section id="details-hotels">
+        <div class="cardUserPage"> 
+        <h3><%= reviewResult.hotel %></h3>
 
+        <img src="<%= reviewResult.resturant1img %>">
 
-
-    <section id="details-container">
-        <img src="https://via.placeholder.com/400"  width="400px" height="400px
-        " alt="" >
-
-
-
-
+        <p>desc</p>
+    </div>
     </section>
+    <!-- <%   %> -->
+    <section id="details-resturants">
+    
+        <div class="cardUserPage"> 
+        <h3><%= reviewResult.returant1 %></h3>
 
+        <img src="<%= reviewResult.resturant1img %>">
 
+        <p><%=reviewResult.resturant3url %></p>
+
+       </div>
+       <div class="cardUserPage"> 
+        <h3><%= reviewResult.returant2 %></h3>
+
+        <img src="<%= reviewResult.resturant2img %>">
+
+        <p><%=reviewResult.resturant2url %></p>
+
+    </div>
+    <div class="cardUserPage"> 
+        <h3><%= reviewResult.returant3 %></h3>
+
+        <img src="<%= reviewResult.resturant3img %>">
+
+        <p><%=reviewResult.resturant3url %></p>
+
+    </div>
+    <div class="cardUserPage"> 
+        <h3><%= reviewResult.returant4 %></h3>
+
+        <img src="<%= reviewResult.resturant4img %>">
+
+        <p><%=reviewResult.resturant4url %></p>
+
+    </div>
+      
+    </section>
+    <section id="details-touristical">
+        <div class="cardUserPage"> 
+        <h3><%= reviewResult.touristic1 %></h3>
+        
+        <img src="<%= reviewResult.touristic1img %>">
+        
+        <p><%= reviewResult.discrp2 %></p>
+        </div>
+        <div class="cardUserPage"> 
+            <h3><%= reviewResult.touristic2 %></h3>
+            
+            <img src="<%= reviewResult.touristic2img %>">
+            
+            <p><%= reviewResult.discrp2 %></p>
+            </div>
+            <div class="cardUserPage"> 
+                <h3><%= reviewResult.touristic3 %></h3>
+                
+                <img src="<%= reviewResult.touristic3img %>">
+                
+                <p><%= reviewResult.discrp3 %></p>
+                </div>
+                <div class="cardUserPage"> 
+                    <h3><%= reviewResult.touristic4 %></h3>
+                    
+                    <img src="<%= reviewResult.touristic4img %>">
+                    
+                    <p><%= reviewResult.discrp4 %></p>
+               </div>         
+    </section>
+  
 
 </div>
 
@@ -95,7 +157,7 @@
 
 
 <%- include('partials/footer') %>
-
-    
+<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>
