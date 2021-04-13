@@ -69,8 +69,8 @@ function getToken(request, response) {
 }
 
 // these variables are only for testing and will be replaced with the data coming from location data
-let lon = 2.3522;
-let lat = 46.8566;
+let lat = 36.8969;
+let lon = 30.7133;
 
 function getHotels(request, response) {
     const url = `https://test.api.amadeus.com/v2/shopping/hotel-offers?latitude=${lat}&longitude=${lon}&radius=10&radiusUnit=KM`;

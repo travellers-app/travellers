@@ -17,7 +17,7 @@
  nav menuitem > menu {
     position: absolute;
     pointer-events:none;
-    z-index: 950;
+    z-index: 950; /* edited by M.A*/
  }
  nav > menu { display:flex; }
  
@@ -55,6 +55,7 @@ nav a{
     border-radius:3px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
     position:relative;
+    text-decoration: none;
  }
 
  button{
