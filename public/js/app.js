@@ -1,19 +1,17 @@
 
 let search_query;
 
-  $(document).ready(userFunction);
+  $(document).ready(userFunction)
+  $('#details-touristical').hide();
   $('#details-hotels').hide();
   $('#details-resturants').hide();
-  $('#details-touristical').hide();
   $('#details-weather').hide();
-
   function userFunction(){
     $('#hotels-button').on('click',()=>{
       $('#details-hotels').show();
       $('#details-resturants').hide();
       $('#details-touristical').hide();
       $('#details-weather').hide();
-
       console.log('1111112')
     })
     $('#resturants-button').on('click',()=>{
@@ -25,24 +23,22 @@ let search_query;
       console.log('1111113');
     })
     $('#touristical-button').on('click',()=>{
+      $('#details-touristical').show();
       $('#details-hotels').hide();
       $('#details-resturants').hide();
       $('details-weather').hide();
-
-      $('#details-touristical').show();
       console.log('1111114');
 
     })
-
-
     $('#Weather-button').on('click',()=>{
-
-
         $('#details-hotels').hide();
         $('#details-resturants').hide();
         $('#details-touristical').hide();
         $('#details-weather').show();
 
+
+    })
+    $('#delete-button').on ('click',()=>{
 
     })
   }
@@ -55,7 +51,7 @@ let search_query;
   
 
 console.log("we are connected");
-const search_query = 'london';
+// const search_query = 'london';
 let lon;
 let lat;
 $(document).ready(renderSearhPage)

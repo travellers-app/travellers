@@ -50,23 +50,28 @@ function searchPage(request, response) { }
 //----------------- user page start ------------------------------------------------
 
 function userPage(request, response) {
-    // let userName = request.query.name;
-    let sql =`select * from trips where username=$1`;
-    let arraySql =['alaa'];
-    client.query(sql,arraySql).then(data=>{
+   
+    let sql =`select * from trips where id=$1`;
+  
+    client.query(sql,[1]).then(data=>{
         // console.log(data.rows);
         let resultsDataBase= data.rows[0];
 // console.log(resultsDataBase);
-/*    this.city = city;
-    this.temperature = temperature;
-    this.descriptions = descriptions;
-    this.wind_speed = wind_speed;
-    this.humidity = humidity; */
+
 //    console.log("this is weather--------------------------",arrayWeatherObject);
+
 response.render('userpage', {reviewResult:resultsDataBase,weather:arrayWeatherObject});
  })
 
  }
+//  app.delete('search/:id', (req,res)=>{
+//     let id = req.params.id;
+//     let SQL = 'DELETE FROM trips WHERE id=$1';
+//     client.query(SQL,[id]).then(result => {
+//         // console.log(result);
+//         res.redirect('/');
+//     })
+// })
  // ------------------user page finish ------------------------------------------------
 function searchPage(request, response) {
     response.render('search');

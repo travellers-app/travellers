@@ -33,6 +33,10 @@
                 <button class="user-buttons" id="resturants-button">resturants </button>
                 <br>
                 <button class="user-buttons" id="touristical-button">points of intersts </button>
+                <br>
+                <button class="user-buttons" id="updata-button">UpDate</button>
+                <br>
+                <button class="user-buttons" id="delete-button">Delete</button>
 
             </div>
 
@@ -51,47 +55,19 @@
 
                 </div>
 
-
-<%=   %>
-<!--  this.temperature = temperature;
-    this.descriptions = descriptions;
-    this.wind_speed = wind_speed;
-    this.humidity = humidity;
-    arrayWeatherObject.push(this);
-} -->
-
                 <div id="container-of-spans">
                     <section class="detail-card flip-card" id="details-weather">
                         <div class="cardUserPage flip-card-inner1">
                             <div id="weather-div" class="flip-card-front">
-                                <h2 id="Your-trips-details">   <%=weather[0].city%></h2>
+                                <h2 id="Your-trips-details">   <%=weather[0].city %></h2>
                                 <br>
                                 <br>
                                 <ul>
-
-
                                     <%weather.forEach(x=>{%>
-
-                                        <li>
-                                           Temperature <%= x.temperature  %>
-                                           <br>
-                                           <br>
-
-
-                                         Wind Speed   <%= x.wind_speed  %>
-                                         <br>
-                                         <br>
-                                         humidity <%= x.humidity  %>
-                                         <br>
-                                         <br>
-
-                                        </li>
-
-                                        <br>
-
-                                
-
-
+                                       <li> Temperature : <%= x.temperature  %></li>
+                                       <li> Description : <%= x.descriptions  %></li>
+                                       <li> Wind Speed :  <%= x.wind_speed  %></li>
+                                       <li>humidity : <%= x.humidity  %></li>
                                 <%    }) %>
                                 </ul>
 
@@ -100,8 +76,6 @@
                                     <img src="https://cdn.pixabay.com/photo/2012/06/08/06/19/clouds-49520_960_720.jpg" alt="">
                             </div>
                         </div>
-
-
                     </section>
 
 
@@ -112,15 +86,16 @@
                                 <h3>
                                     <%= reviewResult.hotel %>
                                 </h3>
-
-                                <img src="<%= reviewResult.resturant1img %>">
+                                <p>time arrive  <%= reviewResult.checkin %></p>
+                                <p>time leave  <%= reviewResult.checkout %></p>
+                                <p>time leave  <%= reviewResult.contact %></p>
+                             
                             </div>
                             <div class="flip-card-back">
-                                <h2>Raneem</h2>
+                                <h2>   </h2>
 
                             </div>
                         </div>
-
 
                     </section>
 
@@ -131,22 +106,23 @@
                             <div class="flip-card-front">
 
                                 <h3>
-                                    <%= reviewResult.returant1 %>
+                                    <%= reviewResult.returant %>
                                 </h3>
 
-                                <a href=" <%=reviewResult.resturant2url %>"><img
-                                        src="<%= reviewResult.resturant2img %>"> </a>
+                                <a href=" <%=reviewResult.resturanturl %>"><img
+                                        src="<%= reviewResult.resturantimg %>"> </a>
 
 
                             </div>
                             <div class="flip-card-back">
-                                <h2>Raneem</h2>
+                                <h2>    </h2>
 
                             </div>
                         </div>
+                    </section>
 
                         
-                        <div class="cardUserPage flip-card-inner">
+                        <!-- <div class="cardUserPage flip-card-inner">
                             <div class="flip-card-front">
 
                             <h3>
@@ -196,10 +172,10 @@
                             <div class="flip-card-back">
                                 <h2>ALaa</h2>
 
-                            </div>
-                        </div>
+                            </div> -->
+                        <!-- </div> -->
 
-                    </section>
+                   
 <!-- 
 section class="detail-card flip-card" id="details-resturants">
 
@@ -231,22 +207,22 @@ section class="detail-card flip-card" id="details-resturants">
         <div class="flip-card-front">
 
             <h3>
-                <%= reviewResult.touristic1 %> </h3>
+                <%= reviewResult.touristic %> </h3>
 
-            <a href=" <%=reviewResult.resturant2url %>"><img
-                    src="<%= reviewResult.resturant2img %>"> </a>
+            <img
+                    src="<%= reviewResult.touristicimg %>"> 
 
                     <p>
-                        <%= reviewResult.discrp2 %>
+                        <%= reviewResult.discrp %>
                     </p>
         </div>
         <div class="flip-card-back">
-            <h2>Raneem</h2>
+            <h2>  </h2>
 
         </div>
     </div>
-
-    
+</section>
+    <!--
     <div class="cardUserPage flip-card-inner">
         <div class="flip-card-front">
 
@@ -306,39 +282,8 @@ section class="detail-card flip-card" id="details-resturants">
         <div class="flip-card-back">
             <h2>Hello World</h2>
 
-        </div>
-    </div>
-
-</section>
-                   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        </div> -->
+    <!-- </div> -->
 
 
 
@@ -356,20 +301,7 @@ section class="detail-card flip-card" id="details-resturants">
 
             </div>
 
-
-
-
-
-
-
-
-
         </main>
-
-
-
-
-
 
         <%- include('partials/footer') %>
             <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
