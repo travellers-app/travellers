@@ -14,16 +14,6 @@
     <%- include('partials/header') %>
 
 
-
-        <!-- 
--location
--username
--hotels 
--from to
--resturants name +url+image
--touristical  names 
-
- -->
         <main id="user-page-main">
             <div id="user-data-buttons">
                 <br>
@@ -54,10 +44,10 @@
                 <div id="user-data-container">
                     <h2 id="Your-trips-details">
                         <%=reviewResult.username%>
+                        's trips details
+
                     </h2>
-                    <h2 id="Your-trips-details">
-                        Your trips details
-                    </h2>
+    
 
                 </div>
 
@@ -66,6 +56,27 @@
 
 
                 <div id="container-of-spans">
+                    <section class="detail-card flip-card" id="details-weather">
+                        <div class="cardUserPage flip-card-inner">
+                            <div class="flip-card-front">
+
+                                <h3>
+                                    <%= reviewResult.hotel %>
+                                    weather-card
+                                </h3>
+
+                                <img src="<%= reviewResult.resturant1img %>">
+                            </div>
+                            <div class="flip-card-back">
+                                <h2>Raneem</h2>
+
+                            </div>
+                        </div>
+
+
+                    </section>
+
+
                     <section class="detail-card flip-card" id="details-hotels">
                         <div class="cardUserPage flip-card-inner">
                             <div class="flip-card-front">

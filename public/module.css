@@ -20,7 +20,12 @@ justify-content: center;
 width: 50%;
 }
 
-
+#user-data-container{
+  /* border: sienna solid; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #login-button{
 margin-left: 150px;
 
@@ -89,6 +94,8 @@ margin-left: 150px;
   /* position: relative; */
   width: 100%;
   height: 30%;
+  z-index: 900;
+
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
@@ -96,10 +103,13 @@ margin-left: 150px;
 }
 
 .flip-card:hover .flip-card-inner {
+  z-index: 900;
+
   transform: rotateY(180deg);
 }
 
 .flip-card-front, .flip-card-back {
+  z-index: 900;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -113,7 +123,7 @@ margin-left: 150px;
 }
 
 .flip-card-back {
-  background-color: #2980b9;
+  background-color: #666;
   color: white;
   transform: rotateY(180deg);
 }
@@ -144,13 +154,9 @@ margin-left: 150px;
 
 
 .cardUserPage{
-  /* border: turquoise solid; */
   width: 50%;
   
-  /* display: flex;
 
-  align-items: center;    
-  flex-direction: row;*/
 } 
 
 
@@ -180,6 +186,7 @@ margin-left: 150px;
  nav menuitem > menu {
     position: absolute;
     pointer-events:none;
+    z-index: 950;
  }
  nav > menu { display:flex; }
  
