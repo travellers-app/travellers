@@ -1,5 +1,6 @@
 'use strict';
 require('dotenv').config();
+
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL;
 const NODE_ENV = process.env.NODE_ENV;
@@ -55,10 +56,14 @@ function userPage(request, response) {
     client.query(sql,arraySql).then(data=>{
         // console.log(data.rows);
         let resultsDataBase= data.rows[0];
-console.log(resultsDataBase);
-
-   
-response.render('userpage', {reviewResult:resultsDataBase});
+// console.log(resultsDataBase);
+/*    this.city = city;
+    this.temperature = temperature;
+    this.descriptions = descriptions;
+    this.wind_speed = wind_speed;
+    this.humidity = humidity; */
+//    console.log("this is weather--------------------------",arrayWeatherObject);
+response.render('userpage', {reviewResult:resultsDataBase,weather:arrayWeatherObject});
  })
 
  }
@@ -153,8 +158,10 @@ function Yelp(yelpData) {
     this.url = yelpData.url;
 }
 function getWeather(request, response) {
+    arrayWeatherObject = [];
+
     const city = request.query.city;
-    let url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&limit=4&key=${WEATHER_API_KEY}`;
+    let url = `https://api.weatherbit.io/v2.0/forecast/daily?city="${city}"&limit=4&key=${WEATHER_API_KEY}`;
     superagent.get(url).then(data => {
         let weatherData = data.body.data;
         for (let i = 0; i < 3; i++) {
@@ -162,12 +169,15 @@ function getWeather(request, response) {
             let desc = weatherData[i].weather.description;
             let windSpeed = weatherData[i].wind_spd;
             let humidity = weatherData[i].rh;
-            new Weather('', temp, desc, windSpeed, humidity);
+            new Weather(city, temp, desc, windSpeed, humidity);
         }
         response.send(arrayWeatherObject);
     })
 }
+
+
 let arrayWeatherObject = [];
+
 function Weather(city, temperature, descriptions, wind_speed, humidity) {
     this.city = city;
     this.temperature = temperature;
@@ -176,7 +186,9 @@ function Weather(city, temperature, descriptions, wind_speed, humidity) {
     this.humidity = humidity;
     arrayWeatherObject.push(this);
 }
+
 function getLocation(request, response) {
+
     const city = request.query.city;
     const url = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&city=${city}&format=json&limit=1`;
     superagent.get(url)
