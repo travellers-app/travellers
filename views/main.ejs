@@ -3,8 +3,54 @@
 <%- include('partials/head',{title:'home'}) %>
 <body>
     <%- include('partials/header') %>
-    <div id="slider">slider</div>
-    <div>
+    <!-- <div id="slider">slider</div> -->
+    <!---------------------------------------------------Slider---------------------------------------------------------------->
+    <div id="slide">
+
+        <div class="slide-container">
+            
+            <div data-am-fadeshow="next-prev-navigation">
+    
+                <!-- Radio -->
+            <input type="radio" name="css-fadeshow" id="slide-1" />
+            <input type="radio" name="css-fadeshow" id="slide-2" />
+            <input type="radio" name="css-fadeshow" id="slide-3" />
+    
+            <!-- Slides -->
+            <div class="fs-slides">
+                <div class="fs-slide" style="background-image: url(https://live.staticflickr.com/6162/6252045387_0de54832d5_b.jpg);"></div>
+                <div class="fs-slide" style="background-image: url(https://lp-cms-production.imgix.net/image_browser/london-big-ben.jpg);"></div>
+                <div class="fs-slide" style="background-image: url(https://www.timefortravel.co.uk/wp-content/uploads/2014/03/Sandy-Lane-7.jpg);"></div>
+                <div class="fs-slide" style="background-image: url(http://2.bp.blogspot.com/-ken6MEJz1vA/VRZ8Ai5hUrI/AAAAAAAACh4/TC0nAO5jmzw/s1600/h_jumeirahvittaveli_06.jpg);"></div>
+            </div>
+    
+            <!-- Quick Navigation -->
+            <div class="fs-quick-nav">
+                <label class="fs-quick-btn" for="slide-1"></label>
+                <label class="fs-quick-btn" for="slide-2"></label>
+                <label class="fs-quick-btn" for="slide-3"></label>
+            </div>
+            
+            <!-- Prev Navigation -->
+            <div class="fs-prev-nav">
+                <label class="fs-prev-btn" for="slide-1"></label>
+                <label class="fs-prev-btn" for="slide-2"></label>
+                <label class="fs-prev-btn" for="slide-3"></label>
+            </div>
+            
+            <!-- Next Navigation -->
+            <div class="fs-next-nav">
+                <label class="fs-next-btn" for="slide-1"></label>
+                <label class="fs-next-btn" for="slide-2"></label>
+                <label class="fs-next-btn" for="slide-3"></label>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+    <!---------------------------------------------------Slider---------------------------------------------------------------->
+    <!-- <div>
         <img src="" alt="">
         <form action="/reg">
             <fieldset>
@@ -16,15 +62,34 @@
                 <input type="text" name="passWord" placeholder="pass word">
             </fieldset>
         </form>
-    </div>
+    </div> -->
     <div id="container">
-        <div class="card">card1</div>
-        <div class="card">card2</div>
-        <div class="card">card3</div>
-        <div class="card">card4</div>
-        <div class="card">card5</div>
-        <div class="card">card6</div>
+        <div class="card">
+            <img src="https://lp-cms-production.imgix.net/image_browser/Colosseum%20-%20Roman%20highlights.jpg" alt="Rome">
+            <h3>All Roads Lead to Rome</h3>
+        </div>
+        <div class="card">
+            <img src="https://lp-cms-production.imgix.net/image_browser/Effiel%20Tower%20-%20Paris%20Highlights.jpg?auto=format&fit=crop&sharp=10&vib=20&ixlib=react-8.6.4&w=850" alt="Paris">
+            <h3>A walk about Paris will provide lessons in history, beauty, and in the point of Life</h3>
+        </div>
+        <div class="card">
+            <img src="https://lp-cms-production.imgix.net/2020-11/GettyRF_1085205362.jpg?auto=format&fit=crop&sharp=10&vib=20&ixlib=react-8.6.4&w=850" alt="Pyramid">
+            <h3>The pyramid shape is said to hold many secrets and amazing properties. One of them is a sense of wonder</h3>
+        </div>
+        <!-- <div class="card">
+            <img src="https://static.toiimg.com/photo/53331161.cms" alt="Bali">
+            <h3>Don’t talk about heaven if you’ve never been to Bali</h3>
+        </div>
+        <div class="card">
+            <img src="https://cdn.thecrazytourist.com/wp-content/uploads/2018/05/ccimage-shutterstock_363025718.jpg" alt="Tokyo">
+            <h3>Tokyo may have more money and Kyoto more culture; Nara may have more history and Kobe more style. But Osaka has the biggest heart</h3>
+        </div>
+        <div class="card">
+            <img src="http://www.simpleimageresizer.com/_uploads/photos/80fd6868/milan_634x423.jpg" alt="Milan">
+            <h3>Milan is beautiful in fog, like a woman with a veil</h3>
+        </div> -->
     </div>
     <%- include('partials/footer') %>
 </body>
+
 </html>

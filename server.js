@@ -1,4 +1,5 @@
 'use strict';
+
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL;
@@ -44,12 +45,14 @@ app.get('/resturants', handleYelpRequest);
 app.get('/touristic', getTouristic); // 'token2' will redirect to this path and render tours
 app.get('/user', userPage);
 app.get('/about', aboutPage);
-function homePage(request, response) { }
+// function homePage(request, response) { }
 function searchPage(request, response) {
     response.render('search');
 }
 function userPage(request, response) { }
-function aboutPage(request, response) { }
+function aboutPage(request, response) {
+    response.render('about');
+ }
 function homePage(request, response) {
     response.render('main');
 }
@@ -66,11 +69,11 @@ function getToken(request, response) {
 }
 
 // these variables are only for testing and will be replaced with the data coming from location data
-let lon = 0.1278;
-let lat = 51.5074;
+let lon = 2.3522;
+let lat = 46.8566;
 
 function getHotels(request, response) {
-    const url = `https://test.api.amadeus.com/v2/shopping/hotel-offers?latitude=${lat}&longitude=${lon}&radius=5&radiusUnit=KM`;
+    const url = `https://test.api.amadeus.com/v2/shopping/hotel-offers?latitude=${lat}&longitude=${lon}&radius=10&radiusUnit=KM`;
     superagent.get(url).set('Authorization', `Bearer ${key}`).then(hotelsObj => {
         let newHotel = hotelsObj.body.data.map(offer => {
             return new Hotels(offer);
@@ -102,7 +105,7 @@ function getToken2(request, response) {
         }).catch(error => (console.log('Token ' + error)))
 }
 function getTouristic(request, response) {
-    const url = `https://test.api.amadeus.com/v1/shopping/activities?longitude=${lon}&latitude=${lat}&radius=1`;
+    const url = `https://test.api.amadeus.com/v1/shopping/activities?longitude=${lon}&latitude=${lat}&radius=5`;
     superagent.get(url).set('Authorization', `Bearer ${key}`).then(toursObj => {
         let newTour = toursObj.body.data.map(tour => {
             return new Tours(tour);
