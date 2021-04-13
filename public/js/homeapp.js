@@ -1,5 +1,4 @@
-
-const leftImg =document.getElementById('left');
+'use strict';
 
 
 $(document).ready(function () {
@@ -12,17 +11,25 @@ $(document).ready(function () {
             let leftIndex = randomNumber(0, result.length -1);
             let middleIndex = randomNumber(0, result.length -1);
             let rightIndex = randomNumber(0, result.length -1);
-            console.log(leftIndex,rightIndex,middleIndex)
-            leftImg.src=result[leftIndex].image;
-            $('$left-h').innerHTML=result[leftIndex].image
+            while(leftIndex===middleIndex || middleIndex===rightIndex || leftIndex===rightIndex ){
+                leftIndex = randomNumber(0, result.length -1);
+                middleIndex = randomNumber(0, result.length -1);
+                rightIndex = randomNumber(0, result.length -1);
+              }
+            const template =$('#templet').html();
 
-            var template =$('#template').innerHTML;
-            var rendered = Mustache.render(template, result[leftIndex]);
-            $('#left').innerHTML = rendered;
+            const renderedOne = Mustache.render(template, result[leftIndex]);
+            $('#left').append(renderedOne);
+
+            const renderedTwo = Mustache.render(template, result[middleIndex]);
+            $('#middle').append(renderedTwo);
+
+            const renderedThree = Mustache.render(template, result[rightIndex]);
+            $('#right').append(renderedThree);
+
         });
         
     })
-    
 
     function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;

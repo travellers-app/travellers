@@ -18,21 +18,20 @@
         </form>
     </div>
     <template id="templet" type="text/x-tmpl-mustache">
-        <img src="{{image}}" alt="">
+        <img src="{{image}}" alt="" width="350px" height="350px">
             <h5>{{quotation}}</h5>
     </template>
     <div id="container">
-        <div   class="card">
-            <img id="left" src="" alt="">
-            <h5 id="left-h"></h5>
-
+        <div id="left"  class="card">
             
         </div>
-        <div class="card">card2</div>
-        <div class="card">card3</div>
-        <div class="card">card4</div>
+        <div  id="middle" class="card">
+
+        </div>
+        <div id="right" class="card"></div>
+        <!-- <div class="card">card4</div>
         <div class="card">card5</div>
-        <div class="card">card6</div>
+        <div class="card">card6</div> -->
     </div>
     <%- include('partials/footer') %>
     <script src="https://code.jquery.com/jquery-3.2.1.js"></script>

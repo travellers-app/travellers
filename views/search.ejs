@@ -1,50 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('partials/head',{title:'home'}) %>
-
     <body>
         <%- include('partials/header') %>
             <main>
                 <div id="serachDiv">
                     <form action="" style="position: relative;">
-                        <input class="searchInp" type="text" placeholder="From:">
-                        <input class="searchInp" type="text" placeholder="To:">
-                        <input class="searchInp" type="date" placeholder="First Day">
-                        <input class="searchInp" type="date" placeholder="Last Day"><br>
+                        <input id="from" class="searchInp" type="text" placeholder="From:">
+                        <input id="to" class="searchInp" type="text" placeholder="To:">
+                        <input id="start" class="searchInp" type="date" placeholder="First Day">
+                        <input id="end" class="searchInp" type="date" placeholder="Last Day"><br>
                         <button id="searchBtu">Search</button>
                     </form>
                 </div>
                 <div id="resultDiv">
-                    <div clas="resData">hotels
-                        <div id="hotelemp">
-                            <img src="http://uat.multimediarepository.testing.amadeus.com/cmr/retrieve/hotel/3A7CE6B4EF7C42F08A0920E17A1B1377"
-                                alt="">
-                            <p>name: W London - Leicester Square</p>
-                            <div>
-                                <p>
-                                    description: Step into the spotlight. Experience the glitz and glamour of red carpet
-                                    premieres in the heart of London's entertainment district, where celebrities and
-                                    influencers mix it up and Hollywood makes international headlines. All just a short
-                                    stroll from Soho. Mix and mingle over sumptuous brunch
-                                </p>
-                            </div>
-                            <p>rate: 5</p>
-                            <p>contact: +44 20 7758 1000</p>
-                            <p>prcice: 300.00 GBP</p>
-                            <label for="choose">choose
-                                <input type="checkbox" name="choose">
-                            </label>
-                        </div>
+                    <div style="height: 30px;margin-top: 20px;width:400px;display: flex;justify-content: center;">
+                        <p class="pheader">
+                            Hotels
+                        </p>
                     </div>
-                    <div clas="resData">resturants</div>
-                    <div clas="resData">touristic</div>
+                    <div
+                        style="height: 30px;margin-top: 20px;width:400px;margin-left: 50px;margin-right: 50px;display: flex;justify-content: center;">
+                        <p class="pheader">
+                            Resturants
+                        </p>
+                    </div>
+                    <div style="height: 30px;margin-top: 20px;width:400px;display: flex;justify-content: center;">
+                        <p class="pheader">
+                            Tours
+                        </p>
+                    </div>
+                    <div class="resData" id="hotel">
+                        <template id="hotTemp" type="text/x-tmpl-mustache">
+                            <div class="parent">
+                                <div class="hotelemp">
+                                    <img class="hotelImg" src="{{img}}" alt="">
+                                    <p class="hotelpara">name: {{name}}</p>
+                                    <div class="hotelpara" style="text-align: left;">
+                                        <p>
+                                            {{discription}}
+                                        </p>
+                                    </div>
+                                    <p class="hotelpara">rate: {{rate}}</p>
+                                    <p class="hotelpara">contact: <br> {{contact}}</p>
+                                    <p class="hotelpara">prcice: {{price}}</p>
+                                </div>
+                                <label class="hotelbtu" for="chooseHotel">choose
+                                    <input type="radio" name="chooseHotel" class="hotel-box">
+                                </label>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="resData" id="returants" style="margin-left: 130px;margin-right: 130px;">
+                        <template id="resTemp" type="text/x-tmpl-mustache">
+                            <div class="parent">
+                                <div class="hotelemp">
+                                    <p class="hotelpara">name: {{name}}</p>
+                                    <img class="hotelImg" src="{{img}}" alt="">
+                                    <p class="hotelpara">rate: {{rate}}</p>
+                                    <p class="hotelpara">contact: <br> <a href="{{contact}}">{{name}}</a></p>
+                                </div>
+                                <label class="hotelbtu" for="chooseRes">choose
+                                    <input type="radio" name="chooseRes" class="resturent-box">
+                                </label>
+                            </div>
+                        </template>
+                    </div>
+                    <div class="resData" id="touristic">
+                        <template id="tourTemp" type="text/x-tmpl-mustache">
+                            <div class="parent">
+                                <div class="hotelemp">
+                                    <img class="hotelImg" src="{{img}}" alt="">
+                                    <p class="hotelpara">name: {{name}}</p>
+                                    <div class="hotelpara" style="text-align: left;">
+                                        <p>
+                                            {{discription}}
+                                        </p>
+                                    </div>
+                                    <p class="hotelpara">rate: {{rate}}</p>
+                                    <p class="hotelpara">contact: <br> <a href="{{contact}}">{{name}}</a></p>
+                                    <p class="hotelpara">prcice: {{price}}</p>
+                                </div>
+                                <label class="hotelbtu" for="chooseTour">choose
+                                    <input type="radio" name="chooseTour" class="tour-box">
+                                </label>
+                            </div>
+                        </template>
+                    </div>
+                    <form id="save-form" action="">
+                        <input type="hidden" id="fromCity" name="fromCity" >
+                        <input type="hidden" id="city" name="city" >
+                        <input type="hidden" name="lon" id="lon" >
+                        <input type="hidden" id="lat" name="lat" >
+                        <input type="hidden" id="hotel" name="hotel" >
+                        <input type="hidden" id="contact" name="contact" >
+                        <input type="hidden" id="checkin" name="checkin" >
+                        <input type="hidden" id="checkout" name="checkout" >
+                        <input type="hidden" id="returant" name="returant" >
+                        <input type="hidden" id="resturantimg" name="resturantimg" >
+                        <input type="hidden" id="resturanturl" name="resturanturl" >
+                        <input type="hidden" id="touristic" name="touristic" >
+                        <input type="hidden" id="touristicimg" name="touristicimg" >
+                        <input type="hidden" id="discrp" name="discrp" >
+                        <button id="button">save</button>
+                    </form>
                 </div>
-                <div></div>
             </main>
             <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
             <script src="https://unpkg.com/mustache@latest"></script>
             <script src="/js/app.js"></script>
             <%- include('partials/footer') %>
     </body>
-
 </html>
+
+

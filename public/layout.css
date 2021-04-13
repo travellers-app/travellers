@@ -56,6 +56,38 @@ li{
     float: left;
 }
 
+
+/* -------------------------------------------------------user page start---------------------------------------------- */
+
+#login-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 50vh;
+    margin: auto;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------------user page finish---------------------------------------------- */
+
 h2{
     font-size: 30px;
     margin-top: 26px;
@@ -78,7 +110,7 @@ footer{
 
 #serachDiv{
     margin: auto;
-    height: 45%;
+    height: 365px;
     width: 100%;
     box-sizing: border-box;
     border: black solid 1px;
@@ -91,7 +123,7 @@ footer{
 }
 
 main{
-    height: 100%;
+    height: 1000px;
     width: 100%;
 }
 
@@ -111,25 +143,82 @@ main{
 }
 
 #resultDiv{
-    margin: auto;
-    height: 30%;
-    width: 70%;
+    height: 560px;
+    width: 100%;
     box-sizing: border-box;
     border: black solid 1px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    background-color: white;
+    flex-wrap: wrap;
+}
+
+.pheader{
+    height: 45px;
+    width: 120px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
 }
 
 .resData{
-    width:30%;
-    height: 80%;
+    width:300px;
+    height: 400px;
+    background-color:cyan;
+    box-sizing: border-box;
+    border: black solid 1px;
+    overflow-y: scroll;
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.parent{
+    width:200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+.hotelemp{
+    margin-top: 20px;
+    width:200px;
+    height: 250px;
     box-sizing: border-box;
     border: black solid 1px;
     overflow: scroll;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    overflow-x: hidden;
+    background-color: darkcyan;
 }
-
-#hotelemp{
-    width:100%;
-    height: 100%;
+.hotelImg{
+    align-self: center;
+    height: 200px;
+    width: 150px;
+    margin-top: 15px;
+}
+.hotelpara{
+    text-align: center;
+    width: 80%;
+    margin-top: 5px;
+    background-color: aqua;
+    align-self: center;
+}
+.hotelbtu{
+    margin-top: 15px;
+    height: 30px;
+    width: 60%;
+    background-color: darkgray;
+    margin-top: 10px;
+    align-self: center;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 20px;
+    align-self: center;
 }

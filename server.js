@@ -3,9 +3,9 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL;
 const NODE_ENV = process.env.NODE_ENV;
-const WEATHER_API_KEY=process.env.WEATHER_API_KEY;
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
 const yelpKey = process.env.YELP;
-// const DATABASE_URL = process.env.DATABASE_URL;
+const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 let key; // this variable is to set the token key
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_PASSWORD;
@@ -31,8 +31,8 @@ client.connect().then(() => {
 }).catch(error => {
     console.log("client connction faild");
 })
-
-
+let lon;
+let lat;
 app.get('/', homePage);
 app.get('/token', getToken); // this path that we will go to to get the token for the hotels and it will redirect to the hotel path automatically
 app.get('/token2', getToken2); // this path that we will go to to get the token for the touristic and it will redirect to the touristic path automatically
@@ -45,16 +45,34 @@ app.get('/touristic', getTouristic); // 'token2' will redirect to this path and 
 app.get('/user', userPage);
 app.get('/about', aboutPage);
 function homePage(request, response) { }
+function searchPage(request, response) { }
+//----------------- user page start ------------------------------------------------
+
+function userPage(request, response) {
+    // let userName = request.query.name;
+    let sql =`select * from trips where username=$1`;
+    let arraySql =['alaa'];
+    client.query(sql,arraySql).then(data=>{
+        // console.log(data.rows);
+        let resultsDataBase= data.rows[0];
+console.log(resultsDataBase);
+
+   
+response.render('userpage', {reviewResult:resultsDataBase});
+ })
+
+ }
+ // ------------------user page finish ------------------------------------------------
 function searchPage(request, response) {
     response.render('search');
 }
-function userPage(request, response) { }
 function aboutPage(request, response) { }
 function homePage(request, response) {
     response.render('main');
 }
-
 function getToken(request, response) {
+    lon = request.query.lon;
+    lat = request.query.lat;
     const tokenUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
     superagent.post(tokenUrl)
         .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -64,19 +82,13 @@ function getToken(request, response) {
             response.redirect('/hotels');
         }).catch(error => (console.log('Token ' + error)))
 }
-
-// these variables are only for testing and will be replaced with the data coming from location data
-let lon = 0.1278;
-let lat = 51.5074;
-
 function getHotels(request, response) {
-    const url = `https://test.api.amadeus.com/v2/shopping/hotel-offers?latitude=${lat}&longitude=${lon}&radius=5&radiusUnit=KM`;
+    const url = `https://test.api.amadeus.com/v2/shopping/hotel-offers?latitude=${lat}&longitude=${lon}&radius=10&radiusUnit=KM`;
     superagent.get(url).set('Authorization', `Bearer ${key}`).then(hotelsObj => {
         let newHotel = hotelsObj.body.data.map(offer => {
             return new Hotels(offer);
         })
         response.json(newHotel)
-
     }).catch(error => console.log(error))
 }
 function Hotels(offer) {
@@ -90,8 +102,9 @@ function Hotels(offer) {
     image ? this.picture = image[0].uri : this.picture = 'Media Unavailable';
     this.price = pay.total + ' ' + pay.currency;
 }
-
 function getToken2(request, response) {
+    lon = request.query.lon;
+    lat = request.query.lat;
     const tokenUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
     superagent.post(tokenUrl)
         .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -102,7 +115,7 @@ function getToken2(request, response) {
         }).catch(error => (console.log('Token ' + error)))
 }
 function getTouristic(request, response) {
-    const url = `https://test.api.amadeus.com/v1/shopping/activities?longitude=${lon}&latitude=${lat}&radius=1`;
+    const url = `https://test.api.amadeus.com/v1/shopping/activities?longitude=${lon}&latitude=${lat}&radius=5`;
     superagent.get(url).set('Authorization', `Bearer ${key}`).then(toursObj => {
         let newTour = toursObj.body.data.map(tour => {
             return new Tours(tour);
@@ -118,21 +131,16 @@ function Tours(tour) {
     tour.pictures ? this.picture = tour.pictures[0] : 'No Picture available';
     this.booking_link = tour.bookingLink;
     this.price = pay.amount + ' ' + pay.currencyCode;
-
 }
 function handleYelpRequest(req, res) {
-  
     const city = req.query.city;
-    console.log(city)
     const url = `https://api.yelp.com/v3/businesses/search?location=${city}`;
     superagent.get(url)
         .set('Authorization', `Bearer ${yelpKey}`)
         .then(yelp => {
-          console.log('after',yelp)
             const yelpArr = yelp.body.businesses.map(yelpData => {
                 return new Yelp(yelpData);
             });
-            console.log(yelpArr)
             res.json(yelpArr);
         })
         .catch((err) => anyErrorHandler(err, req, res));
@@ -144,10 +152,9 @@ function Yelp(yelpData) {
     this.imgURL = yelpData.image_url;
     this.url = yelpData.url;
 }
-
 function getWeather(request, response) {
-    // let city = request.query.city;
-    let url = `https://api.weatherbit.io/v2.0/forecast/daily?city=amman&limit=4&key=${WEATHER_API_KEY}`;
+    const city = request.query.city;
+    let url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&limit=4&key=${WEATHER_API_KEY}`;
     superagent.get(url).then(data => {
         let weatherData = data.body.data;
         for (let i = 0; i < 3; i++) {
@@ -155,13 +162,8 @@ function getWeather(request, response) {
             let desc = weatherData[i].weather.description;
             let windSpeed = weatherData[i].wind_spd;
             let humidity = weatherData[i].rh;
-            // console.log(temp);
-            // console.log(desc);
-            // console.log(windSpeed);
-            // console.log(humidity);
             new Weather('', temp, desc, windSpeed, humidity);
         }
-        // console.log(arrayWeatherObject);
         response.send(arrayWeatherObject);
     })
 }
@@ -176,7 +178,7 @@ function Weather(city, temperature, descriptions, wind_speed, humidity) {
 }
 function getLocation(request, response) {
     const city = request.query.city;
-    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.GEOCODE_API_KEY}&city=${city}&format=json&limit=1`;
+    const url = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&city=${city}&format=json&limit=1`;
     superagent.get(url)
         .then(data => {
             const geoData = data.body[0];
@@ -184,11 +186,9 @@ function getLocation(request, response) {
             response.json(locationInfo);
         })
         .catch((error) => {
-            console.log(error.message);
             response.status(500).send('So sorry, something went wrong.');
         });
 }
-
 function Location(city, info) {
     this.search_query = city;
     this.formatted_query = info.display_name;
@@ -200,15 +200,6 @@ Location.all = [];
 function anyErrorHandler(error, req, res) {
     res.status(500).send(error);
 }
-// calender (exists)
-// city-search (autocomplete => stretch goal)
-// location => insert the city name => API => long. + lat. => stretch goal
-// weather => weather api => {"weather_descriptions","sunrise":,"sunset","temperature":,"wind_speed","humidity"}
-// hotels => amadeus api => mohammed-ashor
-// resturants => yelp api => raneem
-// touristical monuments ?? => raneem 
-
-
 
 
 
