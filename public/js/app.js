@@ -1,5 +1,5 @@
 console.log("we are connected");
-const search_query= 'seattle';
+const search_query= '';
 
 
 
@@ -46,9 +46,9 @@ function getLocation() {
       .then(result => {
         console.log(result)
       })
-    //   .catch(error => {
-    //     showError(error);
-    //   });
+      .catch(error => {
+        showError(error);
+      });
   }
 
   function getTouristic() {
@@ -87,3 +87,8 @@ function getLocation() {
   getResturants()
   getTouristic()
   getHotels()
+
+
+
+
+
