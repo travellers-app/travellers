@@ -46,13 +46,26 @@ app.get('/user', userPage);
 app.get('/about', aboutPage);
 function homePage(request, response) { }
 function searchPage(request, response) { }
+//----------------- user page start ------------------------------------------------
+
 function userPage(request, response) {
-    response.render('userpage');
-}
+    // let userName = request.query.name;
+    let sql =`select * from trips where username=$1`;
+    let arraySql =['alaa'];
+    client.query(sql,arraySql).then(data=>{
+        // console.log(data.rows);
+        let resultsDataBase= data.rows[0];
+console.log(resultsDataBase);
+
+   
+response.render('userpage', {reviewResult:resultsDataBase});
+ })
+
+ }
+ // ------------------user page finish ------------------------------------------------
 function searchPage(request, response) {
     response.render('search');
 }
-function userPage(request, response) { }
 function aboutPage(request, response) { }
 function homePage(request, response) {
     response.render('main');
@@ -187,9 +200,6 @@ Location.all = [];
 function anyErrorHandler(error, req, res) {
     res.status(500).send(error);
 }
-
-
-
 
 
 

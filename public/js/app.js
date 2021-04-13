@@ -1,5 +1,32 @@
-///////////////////////////////////////////////////////////////////////////
+
 let search_query;
+
+  $(document).ready(userFunction);
+  $('#details-hotels').hide();
+  $('#details-resturants').hide();
+  $('#details-touristical').hide();
+  function userFunction(){
+    $('#hotels-button').on('click',()=>{
+      $('#details-hotels').show();
+      $('#details-resturants').hide();
+      $('#details-touristical').hide();
+      console.log('1111112')
+    })
+    $('#resturants-button').on('click',()=>{
+      $('#details-hotels').hide();
+      $('#details-resturants').show();
+      $('#details-touristical').hide();
+      console.log('1111113');
+    })
+    $('#touristical-button').on('click',()=>{
+      $('#details-hotels').hide();
+      $('#details-resturants').hide();
+      $('#details-touristical').show();
+      console.log('1111114');
+
+    })
+  }
+
 let lon;
 let lat;
 $(document).ready(renderSearhPage)
@@ -153,4 +180,3 @@ Tour.prototype.render = (source) => {
     let cardHtmlData = Mustache.render(cardTemplate, source);
     $('#touristic').append(cardHtmlData);
 }
-///////////////////////////////////////////////////////////////////////////
