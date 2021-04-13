@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,138 +9,352 @@
     <%- include('partials/head',{title:'userPage'}) %>
 
 </head>
+
 <body>
     <%- include('partials/header') %>
 
 
+        <main id="user-page-main">
+            <div id="user-data-buttons">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
 
+                <button class="user-buttons" id="Weather-button">Weather</button>
+                <br>
+                <button class="user-buttons" id="hotels-button">Hotels</button>
+                <br>
+                <button class="user-buttons" id="resturants-button">resturants </button>
+                <br>
+                <button class="user-buttons" id="touristical-button">points of intersts </button>
+
+            </div>
+
+
+
+            <div id="red-pu">
+
+
+                <div id="user-data-container">
+                    <h2 id="Your-trips-details">
+                        <%=reviewResult.username%>
+                        's trips details
+
+                    </h2>
+    
+
+                </div>
+
+
+<%=   %>
+<!--  this.temperature = temperature;
+    this.descriptions = descriptions;
+    this.wind_speed = wind_speed;
+    this.humidity = humidity;
+    arrayWeatherObject.push(this);
+} -->
+
+                <div id="container-of-spans">
+                    <section class="detail-card flip-card" id="details-weather">
+                        <div class="cardUserPage flip-card-inner1">
+                            <div id="weather-div" class="flip-card-front">
+                                <h2 id="Your-trips-details">   <%=weather[0].city%></h2>
+                                <br>
+                                <br>
+                                <ul>
+
+
+                                    <%weather.forEach(x=>{%>
+
+                                        <li>
+                                           Temperature <%= x.temperature  %>
+                                           <br>
+                                           <br>
+
+
+                                         Wind Speed   <%= x.wind_speed  %>
+                                         <br>
+                                         <br>
+                                         humidity <%= x.humidity  %>
+                                         <br>
+                                         <br>
+
+                                        </li>
+
+                                        <br>
+
+                                
+
+
+                                <%    }) %>
+                                </ul>
+
+                            </div>
+                            <div class="flip-card-back">
+                                    <img src="https://cdn.pixabay.com/photo/2012/06/08/06/19/clouds-49520_960_720.jpg" alt="">
+                            </div>
+                        </div>
+
+
+                    </section>
+
+
+                    <section class="detail-card flip-card" id="details-hotels">
+                        <div class="cardUserPage flip-card-inner">
+                            <div class="flip-card-front">
+
+                                <h3>
+                                    <%= reviewResult.hotel %>
+                                </h3>
+
+                                <img src="<%= reviewResult.resturant1img %>">
+                            </div>
+                            <div class="flip-card-back">
+                                <h2>Raneem</h2>
+
+                            </div>
+                        </div>
+
+
+                    </section>
+
+
+                    <section class="detail-card flip-card" id="details-resturants">
+
+                        <div id="resturants-card" class="cardUserPage flip-card-inner">
+                            <div class="flip-card-front">
+
+                                <h3>
+                                    <%= reviewResult.returant1 %>
+                                </h3>
+
+                                <a href=" <%=reviewResult.resturant2url %>"><img
+                                        src="<%= reviewResult.resturant2img %>"> </a>
+
+
+                            </div>
+                            <div class="flip-card-back">
+                                <h2>Raneem</h2>
+
+                            </div>
+                        </div>
+
+                        
+                        <div class="cardUserPage flip-card-inner">
+                            <div class="flip-card-front">
+
+                            <h3>
+                                <%= reviewResult.returant2 %>
+                            </h3>
+
+                            <a href=" <%=reviewResult.resturant2url %>"><img src="<%= reviewResult.resturant2img %>">
+                            </a>
+                            </div>
+
+                            <div class="flip-card-back">
+                                <h2>Raneem</h2>
+
+                            </div>
+
+                        </div>
+                        <div class="cardUserPage flip-card-inner">
+                            <div class="flip-card-front">
+
+                            <h3>
+                                <%= reviewResult.returant3 %>
+                            </h3>
+                            <a href=" <%=reviewResult.resturant2url %>"><img src="<%= reviewResult.resturant2img %>">
+                            </a>
+                            </div>
+                            <div class="flip-card-back">
+                                <h2>Raneem</h2>
+
+                            </div>
+
+
+
+
+                        </div>
+                        <div class="cardUserPage flip-card-inner">
+                            <div class="flip-card-front">
+
+                            <h3>
+                                <%= reviewResult.returant4 %>
+                            </h3>
+
+                            <a href=" <%=reviewResult.resturant2url %>"><img src="<%= reviewResult.resturant2img %>">
+                            </a>
+                            </div>
+
+
+                            <div class="flip-card-back">
+                                <h2>ALaa</h2>
+
+                            </div>
+                        </div>
+
+                    </section>
 <!-- 
--location
--username
--hotels 
--from to
--resturants name +url+image
--touristical  names 
+section class="detail-card flip-card" id="details-resturants">
+
+                        <div id="resturants-card" class="cardUserPage flip-card-inner">
+                            <div class="flip-card-front">
+
+                                <h3>
+                                    <%= reviewResult.returant1 %>
+                                </h3>
+
+                                <a href=" <%=reviewResult.resturant2url %>"><img
+                                        src="<%= reviewResult.resturant2img %>"> </a>
+
+
+                            </div>
+                            <div class="flip-card-back">
+                                <h2>Raneem</h2>
+
+                            </div>
+                        </div>
 
  -->
-<main id="user-page-main">
-    <div  id="user-data-buttons">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
-<button class="user-buttons"  id="hotels-button">Hotels</button>
-<br>
-<button class="user-buttons" id="resturants-button">resturants </button>
-<br>
-<button class="user-buttons" id="touristical-button">points of intersts </button>
-
-    </div>
 
 
 
-    <div id="red-pu">
+ <section class="detail-card flip-card" id="details-resturants">
 
+    <div id="resturants-card" class="cardUserPage flip-card-inner">
+        <div class="flip-card-front">
 
-<div id="user-data-container">
-    <h2 id="Your-trips-details">
-        <%=reviewResult.username%>
-    </h2>
-    <h2 id="Your-trips-details">
-        Your trips details 
-    </h2>
- 
-</div>
+            <h3>
+                <%= reviewResult.touristic1 %> </h3>
 
-<div id="container-of-spans">
-    <section id="details-hotels">
-        <div class="cardUserPage"> 
-        <h3><%= reviewResult.hotel %></h3>
+            <a href=" <%=reviewResult.resturant2url %>"><img
+                    src="<%= reviewResult.resturant2img %>"> </a>
 
-        <img src="<%= reviewResult.resturant1img %>">
-
-        <p>desc</p>
-    </div>
-    </section>
-    <!-- <%   %> -->
-    <section id="details-resturants">
-    
-        <div class="cardUserPage"> 
-        <h3><%= reviewResult.returant1 %></h3>
-
-        <img src="<%= reviewResult.resturant1img %>">
-
-        <p><%=reviewResult.resturant3url %></p>
-
-       </div>
-       <div class="cardUserPage"> 
-        <h3><%= reviewResult.returant2 %></h3>
-
-        <img src="<%= reviewResult.resturant2img %>">
-
-        <p><%=reviewResult.resturant2url %></p>
-
-    </div>
-    <div class="cardUserPage"> 
-        <h3><%= reviewResult.returant3 %></h3>
-
-        <img src="<%= reviewResult.resturant3img %>">
-
-        <p><%=reviewResult.resturant3url %></p>
-
-    </div>
-    <div class="cardUserPage"> 
-        <h3><%= reviewResult.returant4 %></h3>
-
-        <img src="<%= reviewResult.resturant4img %>">
-
-        <p><%=reviewResult.resturant4url %></p>
-
-    </div>
-      
-    </section>
-    <section id="details-touristical">
-        <div class="cardUserPage"> 
-        <h3><%= reviewResult.touristic1 %></h3>
-        
-        <img src="<%= reviewResult.touristic1img %>">
-        
-        <p><%= reviewResult.discrp2 %></p>
+                    <p>
+                        <%= reviewResult.discrp2 %>
+                    </p>
         </div>
-        <div class="cardUserPage"> 
-            <h3><%= reviewResult.touristic2 %></h3>
-            
-            <img src="<%= reviewResult.touristic2img %>">
-            
-            <p><%= reviewResult.discrp2 %></p>
-            </div>
-            <div class="cardUserPage"> 
-                <h3><%= reviewResult.touristic3 %></h3>
-                
-                <img src="<%= reviewResult.touristic3img %>">
-                
-                <p><%= reviewResult.discrp3 %></p>
+        <div class="flip-card-back">
+            <h2>Raneem</h2>
+
+        </div>
+    </div>
+
+    
+    <div class="cardUserPage flip-card-inner">
+        <div class="flip-card-front">
+
+        <h3>
+            <%= reviewResult.touristic2 %>        </h3>
+
+        <a href=" <%=reviewResult.resturant2url %>"><img src="<%= reviewResult.resturant2img %>">
+        </a>
+        <p>
+            <%= reviewResult.discrp2 %>
+        </p>
+        </div>
+
+        <div class="flip-card-back">
+            <h2>Raneem</h2>
+
+        </div>
+
+    </div>
+
+    <div class="cardUserPage flip-card-inner">
+        <div class="flip-card-front">
+
+        <h3>
+                                <%= reviewResult.touristic3 %>        </h3>
+        <a href=" <%=reviewResult.resturant2url %>"><img src="<%= reviewResult.resturant2img %>">
+        </a>
+        <p>
+            <%= reviewResult.discrp3 %>
+        </p>
+
+
+        </div>
+        <div class="flip-card-back">
+            <h2>Raneem</h2>
+
+        </div>
+
+    </div>
+
+    
+    <div class="cardUserPage flip-card-inner">
+        <div class="flip-card-front">
+
+        <h3>
+            <%= reviewResult.touristic4 %>        </h3>
+
+        <a href=" <%=reviewResult.resturant2url %>"><img src="<%= reviewResult.resturant2img %>">
+        </a>
+        <p>
+            <%= reviewResult.discrp4 %>
+        </p>
+
+        </div>
+
+
+        <div class="flip-card-back">
+            <h2>Hello World</h2>
+
+        </div>
+    </div>
+
+</section>
+                   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 </div>
-                <div class="cardUserPage"> 
-                    <h3><%= reviewResult.touristic4 %></h3>
-                    
-                    <img src="<%= reviewResult.touristic4img %>">
-                    
-                    <p><%= reviewResult.discrp4 %></p>
-               </div>         
-    </section>
-  
 
-</div>
+                </div>
 
 
-</div>
+                <!-- 
+                <section class="detail-card" id="weather-card">
+
+
+
+                </section> -->
+
+            </div>
 
 
 
@@ -149,15 +364,16 @@
 
 
 
-</main>
+        </main>
 
 
 
 
 
 
-<%- include('partials/footer') %>
-<script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="/js/app.js"></script>
+        <%- include('partials/footer') %>
+            <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+            <script src="/js/app.js"></script>
 </body>
+
 </html>
