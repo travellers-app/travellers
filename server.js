@@ -16,8 +16,9 @@ const cors = require("cors");
 const pg = require("pg");
 const methodOverride = require("method-override");
 const app = express();
+const pm = require('postman');
+const { response, request } = require('express');
 app.use(cors());
-app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.set('view engine', 'ejs');
@@ -44,41 +45,17 @@ app.get('/resturants', handleYelpRequest);
 app.get('/touristic', getTouristic); // 'token2' will redirect to this path and render tours
 app.get('/user', userPage);
 app.get('/about', aboutPage);
-app.post('/insert',save);
 function homePage(request, response) { }
 function searchPage(request, response) { }
 //----------------- user page start ------------------------------------------------
-function save(request,response){
-    const sqlData=request.body;
-    console.log(request.body)
-    const valuesArr = Object.values(sqlData)
 
-    const sql = 'INSERT INTO trips (fromCity,city,lon,lat, hotel,contact,checkin,checkout,returant,resturantimg,resturanturl,touristic,touristicimg,discrp) VALUES ($1, $2, $3, $4, $5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *';
-    console.log('hiiiii')
-    client.query(sql,valuesArr)
-    .then(data=>{
-        console.log(data)
-        response.redirect('/user');
-    }).catch(error => (console.log('Token ' + error)))
-
-}
 function userPage(request, response) {
-<<<<<<< HEAD
    
     let sql =`select * from trips where id=$1`;
   
     client.query(sql,[1]).then(data=>{
-=======
-    // let userName = request.query.name;
-    let sql =`select * from trips `;
-    // let arraySql =['alaa'];
-    client.query(sql,arraySql).then(data=>{
->>>>>>> 5a14ed1e20be82e110809bb3bd752c4968a00219
         // console.log(data.rows);
         let resultsDataBase= data.rows[0];
-// console.log(resultsDataBase);
-
-//    console.log("this is weather--------------------------",arrayWeatherObject);
 
 response.render('userpage', {reviewResult:resultsDataBase,weather:arrayWeatherObject});
  })
