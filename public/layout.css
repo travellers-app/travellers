@@ -73,9 +73,24 @@ li{
 }
 
 
+#user-data-container{
+    display: flex;
+    padding: 20px;
+    /* border: red solid; */
+    width: 99%;
+    height: 50px;
+    color: white;
+    order: 0;
+    justify-self: flex-end;
+    justify-content: center;
+  
+  }
 
-
-
+  #red-pu{
+    display: flex;
+    width: 89%;
+    flex-direction: column;
+  }
 
 
 

@@ -23,6 +23,14 @@
 
     })
   }
+
+
+
+
+
+
+  
+
 console.log("we are connected");
 const search_query = 'london';
 let lon;
