@@ -1,5 +1,10 @@
 
 let search_query;
+let hotelAll=[];
+let resturentAll=[];
+let tourAll=[];
+let lon;
+let lat;
 
   $(document).ready(userFunction)
   $('#details-touristical').hide();
@@ -45,17 +50,14 @@ let search_query;
 
 
 
-
-
-
-  
-
-console.log("we are connected");
-// const search_query = 'london';
-let lon;
-let lat;
 $(document).ready(renderSearhPage)
 function renderSearhPage() {
+ search_query;
+ hotelAll=[];
+ resturentAll=[];
+ tourAll=[];
+ lon;
+ lat;
     $('#searchBtu').on('click', (event) => {
         event.preventDefault();
         search_query = $('#to').val().toLowerCase();
@@ -65,7 +67,74 @@ function renderSearhPage() {
         getTouristic();
         getHotels();
     })
+    $('#button').on('click',(event)=>{
+        event.preventDefault();
+       $('#fromCity').val($('#from').val());
+       $('#city').val(search_query);
+       $('#lon').val(lon);
+       $('#lat').val(lat);
+       let length=$('.hotel-box').children().prevObject.length;
+       let index;
+       for(let i=0 ; i<length;i++){
+        const box = $('.hotel-box').eq(i);
+        if( box[0].checked===true){
+            index=i;
+            break;
+        }else{
+            index=0;
+        }
+       }
+
+                 
+       $('#hotel').val(hotelAll[index].name);
+       $('#contact').val(hotelAll[index].contact)
+       $('#checkin').val($('#start').val());
+       $('#checkout').val($('#end').val());
+        length=$('.resturent-box').children().prevObject.length;
+        index;
+       for(let i=0 ; i<length;i++){
+        const box = $('.resturent-box').eq(i);
+        if( box[0].checked===true){
+            index=i;
+            break;
+        }else{
+            index=0;
+        }
+       }
+
+       $('#returant').val(resturentAll[index].name);
+       $('#resturantimg').val(resturentAll[index].img);
+       $('#resturanturl').val(resturentAll[index].contact);
+       length=$('.tour-box').children().prevObject.length;
+       index;
+      for(let i=0 ; i<length;i++){
+       const box = $('.tour-box').eq(i);
+       if( box[0].checked===true){
+           index=i;
+           break;
+       }else{
+           index=0;
+       }
+      }
+
+       $('#touristic').val(tourAll[index].name);
+       $('#touristicimg').val(tourAll[index].img);
+       $('#discrp').val(tourAll[index].discription);
+       console.log ($('#hotel').val(),
+       $('#contact').val(),
+       $('#checkin').val(),
+       $('#checkout').val(),$('#returant').val(),
+       $('#resturantimg').val(),
+       $('#resturanturl').val(),$('#touristic').val(),
+       $('#touristicimg').val(),
+       $('#discrp').val())  ;
+       $('#save-form').submit()
+
+
+    })
 }
+
+
 function getLocation() {
     const ajaxSettingsOne = {
         method: 'get',
@@ -155,6 +224,7 @@ function getHotels() {
                 .then(result => {
                     result.forEach((data, idx) => {
                         new Hotel(data.picture, data.name, data.description, data.rate, data.contact, data.price, idx)
+                        
                     })
                 })
                 .catch(error => {
@@ -171,7 +241,9 @@ function Hotel(img, name, discription, rate, contact, price, idx) {
         this.price = price,
         this.idx = idx,
         this.render(this)
+        hotelAll.push(this)
 }
+
 Hotel.prototype.render = (source) => {
     let cardTemplate = $('#hotTemp').html();
     let cardHtmlData = Mustache.render(cardTemplate, source);
@@ -184,7 +256,9 @@ function Resturants(img, name, rate, contact, idx) {
         this.contact = contact,
         this.idx = idx,
         this.render(this)
+        resturentAll.push(this)
 }
+
 Resturants.prototype.render = (source) => {
     let cardTemplate = $('#resTemp').html();
     let cardHtmlData = Mustache.render(cardTemplate, source);
@@ -199,7 +273,9 @@ function Tour(img, name, discription, rate, contact, price, idx) {
         this.price = price,
         this.idx = idx,
         this.render(this)
+        tourAll.push(this);
 }
+
 Tour.prototype.render = (source) => {
     let cardTemplate = $('#tourTemp').html();
     let cardHtmlData = Mustache.render(cardTemplate, source);

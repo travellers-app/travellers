@@ -193,10 +193,16 @@ main{
     margin-bottom: 20px;
 }
 
+.parent{
+    width:200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
 .hotelemp{
     margin-top: 20px;
     width:200px;
-    height: 300px;
+    height: 250px;
     box-sizing: border-box;
     border: black solid 1px;
     overflow: scroll;
@@ -206,14 +212,12 @@ main{
     overflow-x: hidden;
     background-color: darkcyan;
 }
-
 .hotelImg{
     align-self: center;
     height: 200px;
     width: 150px;
     margin-top: 15px;
 }
-
 .hotelpara{
     text-align: center;
     width: 80%;
@@ -221,8 +225,8 @@ main{
     background-color: aqua;
     align-self: center;
 }
-
 .hotelbtu{
+    margin-top: 15px;
     height: 30px;
     width: 60%;
     background-color: darkgray;
@@ -231,4 +235,5 @@ main{
     margin-bottom: 10px;
     text-align: center;
     border-radius: 20px;
+    align-self: center;
 }
