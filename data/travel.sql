@@ -14,5 +14,5 @@ CREATE TABLE trips(
     resturanturl VARCHAR(255),
     touristic VARCHAR(255),
     touristicimg VARCHAR(255),
-    discrp text,
+    discrp text
 );

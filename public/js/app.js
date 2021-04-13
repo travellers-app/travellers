@@ -111,6 +111,7 @@ function renderSearhPage() {
        $('#resturanturl').val(),$('#touristic').val(),
        $('#touristicimg').val(),
        $('#discrp').val())  ;
+       $('#save-form').submit()
 
 
     })
