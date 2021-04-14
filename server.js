@@ -49,6 +49,36 @@ app.get('/about', aboutPage);
 app.post('/insert', save);
 app.delete('/delete', deleteTrip)
 app.get('/detail/:id', detailPage)
+app.post('/update',updatePage)
+app.put('/put',putPage)
+function updatePage(request,response){
+    const id = request.body.id
+    console.log(id)
+    let fromCity;
+    let city;
+    let checkin;
+    let checkout;
+    const sql = `SELECT * FROM trips WHERE id=$1`;
+    client.query(sql, [id]).then(data => {
+        fromCity = data.rows[0].fromcity;
+        city = data.rows[0].city;
+        checkin = data.rows[0].checkin;
+        checkout = data.rows[0].checkout;
+        response.render('update',{id,fromCity,city,checkin,checkout})
+    })
+}
+function putPage(request,response){
+    const id = request.body.id;
+    const data = request.body;
+    const dataArr = Object.values(data);
+    dataArr.shift();
+    dataArr.push(id);
+    console.log(dataArr)
+    let sql = "UPDATE trips SET fromCity=$1,city=$2,lon=$3,lat=$4, hotel=$5,contact=$6,checkin=$7,checkout=$8,returant=$9,resturantimg=$10,resturanturl=$11,touristic=$12,touristicimg=$13,discrp=$14 WHERE id=$15"
+    client.query(sql,dataArr).then(data=>{
+        response.redirect(`/detail/${id}`)
+    })
+}
 function detailPage(request, response) {
     const id = request.params.id;
     const sql = `SELECT * FROM trips WHERE id=$1`;
