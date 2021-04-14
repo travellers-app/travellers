@@ -1251,12 +1251,25 @@ body {
 #team-cards{
     display: flex;
     margin-top: 50px;
+    flex-direction: column
 }
 .about-cards{
     width: 20%;
 }
 .about-cards h2{
 text-align: center;
+}
+.about-cards img{
+  width: 150px;
+}
+
+#hishala{
+  display: flex;
+  justify-content: space-evenly;
+}
+#zmr{
+  display: flex;
+    justify-content: space-evenly;
 }
 /*------------------------------------about us page----------------------------------------------------------*/
 
