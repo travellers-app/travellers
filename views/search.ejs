@@ -33,56 +33,57 @@
                     </div>
                     <div class="resData" id="hotel">
                         <template id="hotTemp" type="text/x-tmpl-mustache">
-                            <div class="hotelemp">
-                                <img class="hotelImg" src="{{img}}"
-                                alt="">
-                            <p class="hotelpara">name: {{name}}</p>
-                            <div class="hotelpara" style="text-align: left;">
-                                <p>
-                                    {{discription}}
-                                </p>
-                            </div>
-                            <p class="hotelpara">rate: {{rate}}</p>
-                            <p class="hotelpara">contact: <br> {{contact}}</p>
-                            <p class="hotelpara">prcice: {{price}}</p>
-                            <label class="hotelbtu" for="chooseHotel{{idx}}">choose
-                                <input type="checkbox" name="choose" id="chooseHotel{{idx}}">
-                            </label>
+                            <div class="parent">
+                                <div class="hotelemp">
+                                    <img class="hotelImg" src="{{img}}" alt="">
+                                    <p class="hotelpara">name: {{name}}</p>
+                                    <div class="hotelpara" style="text-align: left;">
+                                        <p>
+                                            {{discription}}
+                                        </p>
+                                    </div>
+                                    <p class="hotelpara">rate: {{rate}}</p>
+                                    <p class="hotelpara">contact: <br> {{contact}}</p>
+                                    <p class="hotelpara">prcice: {{price}}</p>
+                                </div>
+                                <label class="hotelbtu" for="chooseHotel">choose
+                                    <input type="radio" name="chooseHotel" class="hotel-box">
+                                </label>
                             </div>
                         </template>
                     </div>
                     <div class="resData" id="returants" style="margin-left: 130px;margin-right: 130px;">
                         <template id="resTemp" type="text/x-tmpl-mustache">
-                            <div class="hotelemp">
-                                <p class="hotelpara">name: {{name}}</p>
-                                <img class="hotelImg"
-                                    src="{{img}}"
-                                    alt="">
-                                <p class="hotelpara">rate: {{rate}}</p>
-                                <p class="hotelpara">contact: <br> <a href="{{contact}}">{{name}}</a></p>
-                                <label class="hotelbtu" for="chooseRes{{idx}}">choose
-                                    <input type="checkbox" name="choose" id="chooseRes{{idx}}">
+                            <div class="parent">
+                                <div class="hotelemp">
+                                    <p class="hotelpara">name: {{name}}</p>
+                                    <img class="hotelImg" src="{{img}}" alt="">
+                                    <p class="hotelpara">rate: {{rate}}</p>
+                                    <p class="hotelpara">contact: <br> <a href="{{contact}}">{{name}}</a></p>
+                                </div>
+                                <label class="hotelbtu" for="chooseRes">choose
+                                    <input type="radio" name="chooseRes">
                                 </label>
                             </div>
                         </template>
                     </div>
                     <div class="resData" id="touristic">
                         <template id="tourTemp" type="text/x-tmpl-mustache">
-                            <div class="hotelemp">
-                                <img class="hotelImg"
-                                    src="{{img}}"
-                                    alt="">
-                                <p class="hotelpara">name: {{name}}</p>
-                                <div class="hotelpara" style="text-align: left;">
-                                    <p>
-                                        {{discription}}
-                                    </p>
+                            <div class="parent">
+                                <div class="hotelemp">
+                                    <img class="hotelImg" src="{{img}}" alt="">
+                                    <p class="hotelpara">name: {{name}}</p>
+                                    <div class="hotelpara" style="text-align: left;">
+                                        <p>
+                                            {{discription}}
+                                        </p>
+                                    </div>
+                                    <p class="hotelpara">rate: {{rate}}</p>
+                                    <p class="hotelpara">contact: <br> <a href="{{contact}}">{{name}}</a></p>
+                                    <p class="hotelpara">prcice: {{price}}</p>
                                 </div>
-                                <p class="hotelpara">rate: {{rate}}</p>
-                                <p class="hotelpara">contact: <br> <a href="{{contact}}">{{name}}</a></p>
-                                <p class="hotelpara">prcice: {{price}}</p>
-                                <label class="hotelbtu" for="chooseTour{{idx}}">choose
-                                    <input type="checkbox" name="choose" id="chooseTour{{idx}}">
+                                <label class="hotelbtu" for="chooseTour">choose
+                                    <input type="radio" name="chooseTour">
                                 </label>
                             </div>
                         </template>

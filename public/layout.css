@@ -178,10 +178,17 @@ main{
     margin-bottom: 20px;
 }
 
+.parent{
+    width:200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
 .hotelemp{
     margin-top: 20px;
     width:200px;
-    height: 300px;
+    height: 250px;
     box-sizing: border-box;
     border: black solid 1px;
     overflow: scroll;
@@ -208,6 +215,7 @@ main{
 }
 
 .hotelbtu{
+    margin-top: 15px;
     height: 30px;
     width: 60%;
     background-color: darkgray;
@@ -216,4 +224,5 @@ main{
     margin-bottom: 10px;
     text-align: center;
     border-radius: 20px;
+    align-self: center;
 }
