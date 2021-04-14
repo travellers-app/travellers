@@ -1,4 +1,5 @@
 'use strict';
+
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL;
@@ -44,8 +45,10 @@ app.get('/touristic', getTouristic); // 'token2' will redirect to this path and 
 app.get('/user', userPage);
 app.get('/about', aboutPage);
 app.post('/insert',save);
-function homePage(request, response) { }
-function searchPage(request, response) { }
+
+function aboutPage(request, response) {
+    response.render('about');
+ }
 //----------------- user page start ------------------------------------------------
 
 function userPage(request, response) {
@@ -86,7 +89,7 @@ function save(request,response){
 function searchPage(request, response) {
     response.render('search');
 }
-function aboutPage(request, response) { }
+
 function homePage(request, response) {
     response.render('main');
 }
@@ -102,6 +105,7 @@ function getToken(request, response) {
             response.redirect('/hotels');
         }).catch(error => (console.log('Token ' + error)))
 }
+
 function getHotels(request, response) {
     const url = `https://test.api.amadeus.com/v2/shopping/hotel-offers?latitude=${lat}&longitude=${lon}&radius=10&radiusUnit=KM`;
     superagent.get(url).set('Authorization', `Bearer ${key}`).then(hotelsObj => {

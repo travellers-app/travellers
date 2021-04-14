@@ -1,9 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('partials/head',{title:'home'}) %>
-<body>
-    <%- include('partials/header') %>
-    
-    <%- include('partials/footer') %>
-</body>
+<%- include('partials/head',{title:'About'}) %>
+
+    <body>
+        <%- include('partials/header') %>
+                <main id="userBody">
+
+                    <div class="aboutlink">
+                        <a href="#vision">Our Vision</a>
+                        <a href="#story">Our Story</a>
+                        <a href="#team">Our Team</a>
+                    </div>
+
+                    <div class="wrapwrap">
+                        <div class="about">
+                            <h1>Travelers</h1>
+                        </div>
+                    </div>
+
+                    <div id="vision" class="aboutinfo">
+                        <div>
+                            <h1>Our Vision</h1>
+                            <p>
+                                We made this website to make it easier to anyone wants to travel to have all the information
+                                they might need so your trip is made with no errors.
+                            </p>
+                        </div>
+                    </div>
+                    <div id="story" class="aboutinfo">
+                        <div>
+                            <h1>Our Story</h1>
+                            <p>
+                                We were planning on having a trip to Europe, but the fact that none of us went there before and we couldn't figure where will we stay, and which restaurants will be available, and what activities we might do.
+                                Sadly we couldn't find anything online that provide us with these information, and we canceled the trip.
+                                So as a coding team we decided to make a website that gives the people planning to travel all the information they need to have a great trip, and this website came to life. 
+                            </p>
+
+                        </div>
+                    </div>
+
+                    <div id="team" class="aboutinfo">
+                        <div id="team-container">
+                            
+                            <span>
+                                <h1>Our Team</h1>
+                            </span>
+
+                            
+                            <span id="team-cards">
+
+                                <span class="about-cards">
+                                    <img src="https://via.placeholder.com/100.png/09f/fff" alt="">
+                                    <h2>Hisham Khalil</h2>
+                                </span>
+                                <span class="about-cards">
+                                    <img src="https://via.placeholder.com/100.png/09f/fff" alt="">
+                                    <h2>Alaa Al_Hamdan</h2>
+                                </span>
+                                <span class="about-cards">
+                                    <img src="https://via.placeholder.com/100.png/09f/fff" alt="">
+                                    <h2>Zakeyah Abu yasein</h2>
+                                </span>
+                                <span class="about-cards">
+                                    <img src="https://via.placeholder.com/100.png/09f/fff" alt="">
+                                    <h2>Mohammad Ashour</h2>
+                                </span>
+                                <span class="about-cards">
+                                    <img src="https://via.placeholder.com/100.png/09f/fff" alt="">
+                                    <h2>Raneem Abdulazeez</h2>
+                                </span>
+                                
+                            </span>
+                        </div>
+                    </div>
+                </main>
+            <%- include('partials/footer') %>
+    </body>
+
 </html>
