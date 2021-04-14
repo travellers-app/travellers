@@ -40,6 +40,11 @@
                     <input type="hidden" name="id" value="<%=id%>">
                     <button class="user-buttons" id="delete-button">Delete</button>
                 </form>
+                <% allData.forEach(row=>{ %>
+                    <label for="id">
+                        <input type="radio" name="id" value="<%=row.id%>" class="tripData">
+                    </label>
+                    <% }) %>
             </div>
             <div id="red-pu">
                 <div id="user-data-container">
@@ -125,11 +130,7 @@
                 </div>
             </div>
             </div>
-            <% allData.forEach(row=>{ %>
-                <label for="id">
-                    <input type="radio" name="id" value="<%=row.id%>" class="tripData">
-                </label>
-                <% }) %>
+            
                     <template id="detailTemp" type="text/x-tmpl-mustache">
                         <form id="detform" action="/detail/{{{id}}}" method='get'>
                         </form>
