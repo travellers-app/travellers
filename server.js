@@ -15,6 +15,7 @@ const superagent = require("superagent");
 const cors = require("cors");
 const pg = require("pg");
 const methodOverride = require("method-override");
+const { request } = require('express');
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -44,33 +45,55 @@ app.get('/resturants', handleYelpRequest);
 app.get('/touristic', getTouristic); // 'token2' will redirect to this path and render tours
 app.get('/user', userPage);
 app.get('/about', aboutPage);
-app.post('/insert',save);
-app.delete('/delete',deleteTrip)
-function deleteTrip(request,response){
+app.post('/insert', save);
+app.delete('/delete', deleteTrip)
+app.get('/detail/:id', detailPage)
+function detailPage(request, response) {
+    const id = request.params.id;
+    console.log(id);
+    const sql = `SELECT * FROM trips WHERE id=$1`;
+    client.query(sql, [id]).then(data => {
+        const resultsDataBase = data.rows[0];
+        console.log(resultsDataBase)
+        let allData;
+        const sql2 = `SELECT * FROM trips`;
+        client.query(sql2).then(data => {
+            allData = data.rows
+            console.log(allData)
+            const weather = arrayWeatherObject;
+            console.log(weather);
+            arrayWeatherObject = [];
+            response.render('detail', { reviewResult: resultsDataBase, weather, allData });
+        })
+    })
+}
+function deleteTrip(request, response) {
     const id = 1;
     const deleteSql = 'DELETE FROM trips WHERE id = $1'
-    client.query(deleteSql,[id]).then(data=>{
+    client.query(deleteSql, [id]).then(data => {
         response.redirect('/search');
     });
 }
 function aboutPage(request, response) {
     response.render('about');
- }
+}
 //----------------- user page start ------------------------------------------------
 
 function userPage(request, response) {
-   
-    const sql =`SELECT * FROM trips WHERE id=$1`;
-  
-    client.query(sql,[1]).then(data=>{
+    const sql = `SELECT * FROM trips`;
+    client.query(sql).then(data => {
         // console.log(data.rows);
-        const resultsDataBase= data.rows[0];
-        console.log(resultsDataBase)
-
-response.render('userpage', {reviewResult:resultsDataBase,weather:arrayWeatherObject});
- })
-
- }
+        const resultsDataBase = data.rows[data.rowCount - 1];
+        if (data.rowCount == 0) {
+            response.render('search')
+        } else {
+            const allData = data.rows
+            const weather = arrayWeatherObject;
+            arrayWeatherObject = [];
+            response.render('userpage', { reviewResult: resultsDataBase, weather, allData });
+        }
+    })
+}
 //  app.delete('search/:id', (req,res)=>{
 //     let id = req.params.id;
 //     let SQL = 'DELETE FROM trips WHERE id=$1';
@@ -79,19 +102,15 @@ response.render('userpage', {reviewResult:resultsDataBase,weather:arrayWeatherOb
 //         res.redirect('/');
 //     })
 // })
- // ------------------user page finish ------------------------------------------------
-function save(request,response){
-    const sqlData=request.body;
-    console.log(request.body)
+// ------------------user page finish ------------------------------------------------
+function save(request, response) {
+    const sqlData = request.body;
     const valuesArr = Object.values(sqlData)
-
     const sql = 'INSERT INTO trips (fromCity,city,lon,lat, hotel,contact,checkin,checkout,returant,resturantimg,resturanturl,touristic,touristicimg,discrp) VALUES ($1, $2, $3, $4, $5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *';
-    console.log('hiiiii')
-    client.query(sql,valuesArr)
-    .then(data=>{
-        response.redirect('/user');
-    }).catch(error => (console.log('Token ' + error)))
-
+    client.query(sql, valuesArr)
+        .then(data => {
+            response.redirect('/user');
+        }).catch(error => (console.log(error)))
 }
 function searchPage(request, response) {
     response.render('search');
