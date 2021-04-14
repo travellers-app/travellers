@@ -125,15 +125,21 @@
                 <label for="id">
                     <input type="radio" name="id" value="<%=row.id%>" class="tripData">
                 </label>
-            <% }) %>
-            <template id="detailTemp" type="text/x-tmpl-mustache">
-                <form id="detform" action="/detail/{{{id}}}" method='get'>
-                </form>
-            </template>
-            <div id="detailDiv">
+                <% }) %>
+                    <template id="detailTemp" type="text/x-tmpl-mustache">
+                        <form id="detform" action="/detail/{{{id}}}" method='get'>
+                        </form>
+                    </template>
+                    <div id="detailDiv">
 
-            </div>
+                    </div>
         </main>
+        <form action="">
+            <input type="hidden" name="id" id="id" value="<%=id%>">
+        </form>
+        <form action="">
+            <input type="hidden" name="id" id="id" value="<%=id%>">
+        </form>
         <%- include('partials/footer') %>
             <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
             <script src="https://unpkg.com/mustache@latest"></script>
