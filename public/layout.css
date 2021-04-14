@@ -14,6 +14,9 @@ h1 {
   align-self: center;
   font-size: 54px;
 }
+section{
+  height: 600px;
+}
 
 ul {
   margin-top: 12px;
@@ -1276,8 +1279,6 @@ text-align: center;
 #resultDiv{
     height: 560px;
     width: 100%;
-    box-sizing: border-box;
-    border: black solid 1px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1298,8 +1299,6 @@ text-align: center;
     width:300px;
     height: 400px;
     background-color:cyan;
-    box-sizing: border-box;
-    border: black solid 1px;
     overflow-y: scroll;
     display: flex;
     justify-content: center;
@@ -1353,4 +1352,3 @@ text-align: center;
     border-radius: 20px;
     align-self: center;
 }
-

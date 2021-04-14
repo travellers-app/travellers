@@ -7,10 +7,10 @@
             <main style="display: flex;flex-direction: column;background-color: white;">
                 <div id="serachDiv">
                     <form action="" style="position: relative;">
-                        <input id="from" class="searchInp" type="text" placeholder="From:">
-                        <input id="to" class="searchInp" type="text" placeholder="To:">
-                        <input id="start" class="searchInp" type="date" placeholder="First Day">
-                        <input id="end" class="searchInp" type="date" placeholder="Last Day"><br>
+                        <input id="from" class="searchInp" type="text" value="<%=fromCity%>">
+                        <input id="to" class="searchInp" type="text" value="<%=city%>">
+                        <input id="start" class="searchInp" type="date" value="<%=checkin%>">
+                        <input id="end" class="searchInp" type="date" value="<%=checkout%>"><br>
                         <button id="searchBtu">Search</button>
                     </form>
                 </div>
@@ -89,8 +89,9 @@
                         </template>
                     </div>
                 </div>
-                <button style="width:fit-content;align-self: center;" id="button">save</button>
-                <form id="save-form" action="/insert" method="post">
+                <button style="width:fit-content;align-self: center;" id="button">update</button>
+                <form id="save-form" action="/put?_method=PUT" method="post">
+                    <input type="hidden" name="id" value="<%=id%>">
                     <input type="hidden" id="fromCity" name="fromCity">
                     <input type="hidden" id="city" name="city">
                     <input type="hidden" name="lon" id="lon">
