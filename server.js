@@ -1,4 +1,5 @@
 'use strict';
+
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL;
@@ -43,16 +44,59 @@ app.get('/resturants', handleYelpRequest);
 app.get('/touristic', getTouristic); // 'token2' will redirect to this path and render tours
 app.get('/user', userPage);
 app.get('/about', aboutPage);
-function homePage(request, response) { }
-function searchPage(request, response) { }
+app.post('/insert',save);
+app.delete('/delete',deleteTrip)
+function deleteTrip(request,response){
+    const id = 1;
+    const deleteSql = 'DELETE FROM trips WHERE id = $1'
+    client.query(deleteSql,[id]).then(data=>{
+        response.redirect('/search');
+    });
+}
+function aboutPage(request, response) {
+    response.render('about');
+ }
+//----------------- user page start ------------------------------------------------
+
 function userPage(request, response) {
-    response.render('userpage');
+   
+    const sql =`SELECT * FROM trips WHERE id=$1`;
+  
+    client.query(sql,[1]).then(data=>{
+        // console.log(data.rows);
+        const resultsDataBase= data.rows[0];
+        console.log(resultsDataBase)
+
+response.render('userpage', {reviewResult:resultsDataBase,weather:arrayWeatherObject});
+ })
+
+ }
+//  app.delete('search/:id', (req,res)=>{
+//     let id = req.params.id;
+//     let SQL = 'DELETE FROM trips WHERE id=$1';
+//     client.query(SQL,[id]).then(result => {
+//         // console.log(result);
+//         res.redirect('/');
+//     })
+// })
+ // ------------------user page finish ------------------------------------------------
+function save(request,response){
+    const sqlData=request.body;
+    console.log(request.body)
+    const valuesArr = Object.values(sqlData)
+
+    const sql = 'INSERT INTO trips (fromCity,city,lon,lat, hotel,contact,checkin,checkout,returant,resturantimg,resturanturl,touristic,touristicimg,discrp) VALUES ($1, $2, $3, $4, $5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *';
+    console.log('hiiiii')
+    client.query(sql,valuesArr)
+    .then(data=>{
+        response.redirect('/user');
+    }).catch(error => (console.log('Token ' + error)))
+
 }
 function searchPage(request, response) {
     response.render('search');
 }
-function userPage(request, response) { }
-function aboutPage(request, response) { }
+
 function homePage(request, response) {
     response.render('main');
 }
@@ -68,6 +112,7 @@ function getToken(request, response) {
             response.redirect('/hotels');
         }).catch(error => (console.log('Token ' + error)))
 }
+
 function getHotels(request, response) {
     const url = `https://test.api.amadeus.com/v2/shopping/hotel-offers?latitude=${lat}&longitude=${lon}&radius=10&radiusUnit=KM`;
     superagent.get(url).set('Authorization', `Bearer ${key}`).then(hotelsObj => {
@@ -186,19 +231,3 @@ Location.all = [];
 function anyErrorHandler(error, req, res) {
     res.status(500).send(error);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

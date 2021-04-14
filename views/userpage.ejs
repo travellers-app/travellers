@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,94 +9,123 @@
     <%- include('partials/head',{title:'userPage'}) %>
 
 </head>
+
 <body>
     <%- include('partials/header') %>
+        <main id="user-page-main">
+            <div id="user-data-buttons">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <button class="user-buttons" id="Weather-button">Weather</button>
+                <br>
+                <button class="user-buttons" id="hotels-button">Hotels</button>
+                <br>
+                <button class="user-buttons" id="resturants-button">resturants </button>
+                <br>
+                <button class="user-buttons" id="touristical-button">points of intersts </button>
+                <br>
+                <button class="user-buttons" id="updata-button">UpDate</button>
+                <br>
+                <form action="/delete?_method=Delete" method="POST">
+                    <button class="user-buttons" id="delete-button">Delete</button>
+                </form>
+            </div>
+            <div id="red-pu">
+                <div id="user-data-container">
+                    <h2 id="Your-trips-details">
+                        Your trips details
+                    </h2>
+                </div>
+                <div id="container-of-spans">
+                    <section class="detail-card flip-card" id="details-weather">
+                        <div class="cardUserPage flip-card-inner1">
+                            <div id="weather-div" class="flip-card-front">
+                                <h2 id="Your-trips-details">
+                                    <%=reviewResult.city %>
+                                </h2>
+                                <br>
+                                <br>
+                                <ul>
+                                    <%weather.forEach(x=>{%>
+                                        <li> Temperature : <%= x.temperature %>
+                                        </li>
+                                        <li> Description : <%= x.descriptions %>
+                                        </li>
+                                        <li> Wind Speed : <%= x.wind_speed %>
+                                        </li>
+                                        <li>humidity : <%= x.humidity %>
+                                        </li>
+                                        <% }) %>
+                                </ul>
+                            </div>
+                            <div class="flip-card-back">
+                                <img src="https://cdn.pixabay.com/photo/2012/06/08/06/19/clouds-49520_960_720.jpg"
+                                    alt="">
+                            </div>
+                        </div>
+                    </section>
+                    <section class="detail-card flip-card" id="details-hotels">
+                        <div class="cardUserPage flip-card-inner">
+                            <div class="flip-card-front">
+                                <h3>
+                                    <%= reviewResult.hotel %>
+                                </h3>
+                                <p>time arrive <%= reviewResult.checkin %>
+                                </p>
+                                <p>time leave <%= reviewResult.checkout %>
+                                </p>
+                                <p>time leave <%= reviewResult.contact %>
+                                </p>
+                            </div>
+                            <div class="flip-card-back">
+                                <h2> </h2>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="detail-card flip-card" id="details-resturants">
+                        <div id="resturants-card" class="cardUserPage flip-card-inner">
+                            <div class="flip-card-front">
+                                <h3>
+                                    <%= reviewResult.returant %>
+                                </h3>
+                                <img src="<%= reviewResult.resturantimg %>">
+                            </div>
+                            <div class="flip-card-back">
+                                <h2> </h2>
+                            </div>
+                        </div>
+                    </section>
+                    <section class="detail-card flip-card" id="details-resturants">
+                        <div id="resturants-card" class="cardUserPage flip-card-inner">
+                            <div class="flip-card-front">
+                                <h3>
+                                    <%= reviewResult.touristic %>
+                                </h3>
+                                <img src="<%= reviewResult.touristicimg %>">
+                                <p>
+                                    <%= reviewResult.discrp %>
+                                </p>
+                            </div>
+                            <div class="flip-card-back">
+                                <h2> </h2>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            </div>
 
-
-
-<!-- 
--location
--username
--hotels 
--from to
--resturants name +url+image
--touristical  names 
-
- -->
-<main id="user-page-main">
-    <div  id="user-data-buttons">
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-        <br>
-
-<button class="user-buttons"  id="hotels-button">Hotels</button>
-<br>
-<button class="user-buttons" id="resturants-button">resturants </button>
-<br>
-<button class="user-buttons" id="touristical-button">points of intersts </button>
-
-    </div>
-
-
-
-    <div id="red-pu">
-
-
-<div id="user-data-container">
-
-
-    <h2 id="Your-trips-details">
-        Your trips details 
-    </h2>
-
- 
-</div>
-
-
-
-<div id="container-of-spans">
-
-
-
-    <section id="details-container">
-        <img src="https://via.placeholder.com/400"  width="400px" height="400px
-        " alt="" >
-
-
-
-
-    </section>
-
-
-
-</div>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-</main>
-
-
-
-
-
-
-<%- include('partials/footer') %>
-
-    
+        </main>
+        <%- include('partials/footer') %>
+            <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+            <script src="/js/app.js"></script>
 </body>
+
 </html>

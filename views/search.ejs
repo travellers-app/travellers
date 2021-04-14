@@ -4,13 +4,13 @@
 
     <body>
         <%- include('partials/header') %>
-            <main>
+            <main style="display: flex;flex-direction: column;background-color: white;">
                 <div id="serachDiv">
                     <form action="" style="position: relative;">
-                        <input class="searchInp" type="text" placeholder="From:">
+                        <input id="from" class="searchInp" type="text" placeholder="From:">
                         <input id="to" class="searchInp" type="text" placeholder="To:">
-                        <input class="searchInp" type="date" placeholder="First Day">
-                        <input class="searchInp" type="date" placeholder="Last Day"><br>
+                        <input id="start" class="searchInp" type="date" placeholder="First Day">
+                        <input id="end" class="searchInp" type="date" placeholder="Last Day"><br>
                         <button id="searchBtu">Search</button>
                     </form>
                 </div>
@@ -62,7 +62,7 @@
                                     <p class="hotelpara">contact: <br> <a href="{{contact}}">{{name}}</a></p>
                                 </div>
                                 <label class="hotelbtu" for="chooseRes">choose
-                                    <input type="radio" name="chooseRes">
+                                    <input type="radio" name="chooseRes" class="resturent-box">
                                 </label>
                             </div>
                         </template>
@@ -83,12 +83,31 @@
                                     <p class="hotelpara">prcice: {{price}}</p>
                                 </div>
                                 <label class="hotelbtu" for="chooseTour">choose
-                                    <input type="radio" name="chooseTour">
+                                    <input type="radio" name="chooseTour" class="tour-box">
                                 </label>
                             </div>
                         </template>
                     </div>
                 </div>
+                <button style="width:fit-content;align-self: center;" id="button">save</button>
+                <form id="save-form" action="/insert" method="post">
+                    <input type="hidden" id="fromCity" name="fromCity">
+                    <input type="hidden" id="city" name="city">
+                    <input type="hidden" name="lon" id="lon">
+                    <input type="hidden" id="lat" name="lat">
+                    <input type="hidden" id="hotel" name="hotel">
+                    <input type="hidden" id="contact" name="contact">
+                    <input type="hidden" id="checkin" name="checkin">
+                    <input type="hidden" id="checkout" name="checkout">
+                    <input type="hidden" id="returant" name="returant">
+                    <input type="hidden" id="resturantimg" name="resturantimg">
+                    <input type="hidden" id="resturanturl" name="resturanturl">
+                    <input type="hidden" id="touristic" name="touristic">
+                    <input type="hidden" id="touristicimg" name="touristicimg">
+                    <input type="hidden" id="discrp" name="discrp">
+                    <!-- <button style="opacity: 0;" id="button2"></button> -->
+                    <input type="submit" style="opacity: 0;" id="button2">
+                </form>
             </main>
             <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
             <script src="https://unpkg.com/mustache@latest"></script>
