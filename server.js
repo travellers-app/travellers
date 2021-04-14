@@ -4,9 +4,9 @@ require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL;
 const NODE_ENV = process.env.NODE_ENV;
-// const WEATHER_API_KEY=process.env.WEATHER_API_KEY;
-// const yelpKey = process.env.yelpKey;
-// const DATABASE_URL = process.env.DATABASE_URL;
+const WEATHER_API_KEY = process.env.WEATHER_API_KEY;
+const yelpKey = process.env.YELP;
+const GEOCODE_API_KEY = process.env.GEOCODE_API_KEY;
 let key; // this variable is to set the token key
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_PASSWORD;
@@ -16,9 +16,8 @@ const cors = require("cors");
 const pg = require("pg");
 const methodOverride = require("method-override");
 const app = express();
-const pm = require('postman');
-const { response, request } = require('express');
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.set('view engine', 'ejs');
@@ -32,8 +31,8 @@ client.connect().then(() => {
 }).catch(error => {
     console.log("client connction faild");
 })
-
-
+let lon;
+let lat;
 app.get('/', homePage);
 app.get('/token', getToken); // this path that we will go to to get the token for the hotels and it will redirect to the hotel path automatically
 app.get('/token2', getToken2); // this path that we will go to to get the token for the touristic and it will redirect to the touristic path automatically
@@ -45,19 +44,58 @@ app.get('/resturants', handleYelpRequest);
 app.get('/touristic', getTouristic); // 'token2' will redirect to this path and render tours
 app.get('/user', userPage);
 app.get('/about', aboutPage);
-// function homePage(request, response) { }
-function searchPage(request, response) {
-    response.render('search');
-}
-function userPage(request, response) { }
+app.post('/insert',save);
+
 function aboutPage(request, response) {
     response.render('about');
  }
+//----------------- user page start ------------------------------------------------
+
+function userPage(request, response) {
+   
+    let sql =`select * from trips where id=$1`;
+  
+    client.query(sql,[1]).then(data=>{
+        // console.log(data.rows);
+        let resultsDataBase= data.rows[0];
+
+response.render('userpage', {reviewResult:resultsDataBase,weather:arrayWeatherObject});
+ })
+
+ }
+//  app.delete('search/:id', (req,res)=>{
+//     let id = req.params.id;
+//     let SQL = 'DELETE FROM trips WHERE id=$1';
+//     client.query(SQL,[id]).then(result => {
+//         // console.log(result);
+//         res.redirect('/');
+//     })
+// })
+ // ------------------user page finish ------------------------------------------------
+function save(request,response){
+    const sqlData=request.body;
+    console.log(request.body)
+    const valuesArr = Object.values(sqlData)
+
+    const sql = 'INSERT INTO trips (fromCity,city,lon,lat, hotel,contact,checkin,checkout,returant,resturantimg,resturanturl,touristic,touristicimg,discrp) VALUES ($1, $2, $3, $4, $5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *';
+    console.log('hiiiii')
+    client.query(sql,valuesArr)
+    .then(data=>{
+        console.log(data)
+        response.redirect('/user');
+    }).catch(error => (console.log('Token ' + error)))
+
+}
+function searchPage(request, response) {
+    response.render('search');
+}
+
 function homePage(request, response) {
     response.render('main');
 }
-
 function getToken(request, response) {
+    lon = request.query.lon;
+    lat = request.query.lat;
     const tokenUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
     superagent.post(tokenUrl)
         .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -68,10 +106,6 @@ function getToken(request, response) {
         }).catch(error => (console.log('Token ' + error)))
 }
 
-// these variables are only for testing and will be replaced with the data coming from location data
-let lat = 36.8969;
-let lon = 30.7133;
-
 function getHotels(request, response) {
     const url = `https://test.api.amadeus.com/v2/shopping/hotel-offers?latitude=${lat}&longitude=${lon}&radius=10&radiusUnit=KM`;
     superagent.get(url).set('Authorization', `Bearer ${key}`).then(hotelsObj => {
@@ -79,7 +113,6 @@ function getHotels(request, response) {
             return new Hotels(offer);
         })
         response.json(newHotel)
-
     }).catch(error => console.log(error))
 }
 function Hotels(offer) {
@@ -93,8 +126,9 @@ function Hotels(offer) {
     image ? this.picture = image[0].uri : this.picture = 'Media Unavailable';
     this.price = pay.total + ' ' + pay.currency;
 }
-
 function getToken2(request, response) {
+    lon = request.query.lon;
+    lat = request.query.lat;
     const tokenUrl = 'https://test.api.amadeus.com/v1/security/oauth2/token';
     superagent.post(tokenUrl)
         .set('Content-Type', 'application/x-www-form-urlencoded')
@@ -121,21 +155,16 @@ function Tours(tour) {
     tour.pictures ? this.picture = tour.pictures[0] : 'No Picture available';
     this.booking_link = tour.bookingLink;
     this.price = pay.amount + ' ' + pay.currencyCode;
-
 }
 function handleYelpRequest(req, res) {
-  
     const city = req.query.city;
-    console.log(city)
     const url = `https://api.yelp.com/v3/businesses/search?location=${city}`;
     superagent.get(url)
         .set('Authorization', `Bearer ${yelpKey}`)
         .then(yelp => {
-          console.log('after',yelp)
             const yelpArr = yelp.body.businesses.map(yelpData => {
                 return new Yelp(yelpData);
             });
-            console.log(yelpArr)
             res.json(yelpArr);
         })
         .catch((err) => anyErrorHandler(err, req, res));
@@ -147,24 +176,18 @@ function Yelp(yelpData) {
     this.imgURL = yelpData.image_url;
     this.url = yelpData.url;
 }
-
 function getWeather(request, response) {
-    // let city = request.query.city;
-    let url = `https://api.weatherbit.io/v2.0/forecast/daily?city=amman&limit=4&key=${WEATHER_API_KEY}`;
+    const city = request.query.city;
+    let url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&limit=4&key=${WEATHER_API_KEY}`;
     superagent.get(url).then(data => {
         let weatherData = data.body.data;
-        for (i = 0; i < 3; i++) {
+        for (let i = 0; i < 3; i++) {
             let temp = weatherData[i].temp;
             let desc = weatherData[i].weather.description;
             let windSpeed = weatherData[i].wind_spd;
             let humidity = weatherData[i].rh;
-            // console.log(temp);
-            // console.log(desc);
-            // console.log(windSpeed);
-            // console.log(humidity);
             new Weather('', temp, desc, windSpeed, humidity);
         }
-        // console.log(arrayWeatherObject);
         response.send(arrayWeatherObject);
     })
 }
@@ -179,7 +202,7 @@ function Weather(city, temperature, descriptions, wind_speed, humidity) {
 }
 function getLocation(request, response) {
     const city = request.query.city;
-    const url = `https://us1.locationiq.com/v1/search.php?key=${process.env.GEOCODE_API_KEY}&city=${city}&format=json&limit=1`;
+    const url = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&city=${city}&format=json&limit=1`;
     superagent.get(url)
         .then(data => {
             const geoData = data.body[0];
@@ -187,11 +210,9 @@ function getLocation(request, response) {
             response.json(locationInfo);
         })
         .catch((error) => {
-            console.log(error.message);
             response.status(500).send('So sorry, something went wrong.');
         });
 }
-
 function Location(city, info) {
     this.search_query = city;
     this.formatted_query = info.display_name;
@@ -203,18 +224,6 @@ Location.all = [];
 function anyErrorHandler(error, req, res) {
     res.status(500).send(error);
 }
-// calender (exists)
-// city-search (autocomplete => stretch goal)
-// location => insert the city name => API => long. + lat. => stretch goal
-// weather => weather api => {"weather_descriptions","sunrise":,"sunset","temperature":,"wind_speed","humidity"}
-// hotels => amadeus api => mohammed-ashor
-// resturants => yelp api => raneem
-// touristical monuments ?? => raneem 
-
-
-
-
-
 
 
 

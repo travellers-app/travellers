@@ -3,6 +3,202 @@
  /* HTML Nav Styles */
  /* HTML Nav Styles */
  /* HTML Nav Styles */
+
+ /* ------------------------------------------------user page Start----------------------------------------------------------- */
+
+.loginInput{
+height: 40px;
+width: 400px;
+
+}
+
+#login-form{
+  display: flex;
+  flex-flow: column wrap;
+align-items: center;
+justify-content: center;
+width: 50%;
+}
+
+#user-data-container{
+  /* border: sienna solid; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#login-button{
+margin-left: 150px;
+
+}
+#user-page-main{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  height: 200vh;
+  align-content: space-between;
+  /* border: springgreen solid; */
+}
+#user-data-buttons{
+  /* border:  solid white; */
+  height: 100vh;
+  width: 10%;
+  order: 0;
+  /* margin: auto; */
+}
+
+.user-buttons{
+  width: 200px;
+  font-size: larger;
+  /* text-justify: center;  */
+ border: solid black;
+ margin:20px;
+ text-align: center;
+ font-weight: bolder;
+ padding: 0;
+ 
+}
+.details-container{
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  height: 250px;
+  background-color: transparent;
+  /* border: red solid; */
+  justify-content: center;
+  order: 2;
+}
+.detail-card{
+  /* border: burlywood solid; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+
+  background-color: transparent;
+  height: inherit;
+  /* border: tomato solid; */
+  
+}
+
+
+/* // Simple styling for message. */
+.flip-card {
+  background-color: transparent;
+  /* width: 300px; */
+  /* height: 300px; */
+  /* perspective: 1000px; */
+}
+
+.flip-card-inner {
+  /* position: relative; */
+  width: 100%;
+  height: 30%;
+  z-index: 900;
+
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.flip-card-inner1{
+
+  width: 100%;
+  height: 45%;
+  z-index: 900;
+
+  text-align: center;
+  /* transition: transform 0.6s; */
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+.flip-card:hover .flip-card-inner {
+  z-index: 900;
+
+  transform: rotateY(180deg);
+}
+
+
+.flip-card-front, .flip-card-back {
+  z-index: 900;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #bbb;
+  color: black;
+}
+
+.flip-card-back {
+  background-color: #666;
+  color: white;
+  transform: rotateY(180deg);
+}
+
+.cardUserPage{
+  /* border: solid yellow; */
+  margin: 10px;
+  width: 50%;
+  
+}
+
+#container-of-spans {
+  height: 180vh;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  /* border:  green solid; */
+  width: 100%;
+  order: 3;
+}
+
+#details-touristical {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+
+.cardUserPage{
+  width: 50%;
+  
+
+} 
+#weather-div{
+  border: solid snow;
+  background-image: url('https://cdn.pixabay.com/photo/2012/06/08/06/19/clouds-49520_960_720.jpg');
+}
+
+h2{
+  font-size: x-large;
+  font-weight: bolder;
+  font-family: cursive;
+  /* border: springgreen solid; */
+}
+
+#details-container{
+  height: 100%;
+  /* border: springgreen solid; */
+}
+#Your-trips-details{
+  font-size: 70px;
+  font-size: 70px;
+  margin: auto;
+}
+#delete-button{
+  background-color: red;
+  color: #FFF;
+}
+.flip-card-front ul li{
+  display: block;
+ line-height: 30px;
+}
+ /* ------------------------------------------------user page finished----------------------------------------------------------- */
  menuitem{
     text-align: center;
  }
@@ -17,7 +213,7 @@
  nav menuitem > menu {
     position: absolute;
     pointer-events:none;
-    z-index: 950; /* edited by M.A*/
+    z-index: 950;
  }
  nav > menu { display:flex; }
  
@@ -322,3 +518,11 @@ section {
   }
 
 }
+
+
+
+
+
+
+
+
