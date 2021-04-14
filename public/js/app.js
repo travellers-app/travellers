@@ -64,7 +64,6 @@ function userFunction() {
         let detailForm = Mustache.render(temp, source); 
         $('#detailDiv').append(detailForm);
         $('#detform').submit();
-        // renderDetail($('.tripData').eq(index).val());
     })
 
 }
