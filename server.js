@@ -45,6 +45,7 @@ app.get('/resturants', handleYelpRequest);
 app.get('/touristic', getTouristic); // 'token2' will redirect to this path and render tours
 app.get('/user', userPage);
 app.get('/about', aboutPage);
+
 app.post('/insert', save);
 app.delete('/delete', deleteTrip)
 app.get('/detail/:id', detailPage)
@@ -80,7 +81,21 @@ function deleteTrip(request, response) {
 function aboutPage(request, response) {
     response.render('about');
 }
+
 //----------------- user page start ------------------------------------------------
+function save(request,response){
+    const sqlData=request.body;
+    console.log(request.body)
+    const valuesArr = Object.values(sqlData)
+
+    const sql = 'INSERT INTO trips (fromCity,city,lon,lat, hotel,contact,checkin,checkout,returant,resturantimg,resturanturl,touristic,touristicimg,discrp) VALUES ($1, $2, $3, $4, $5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *';
+    console.log('hiiiii')
+    client.query(sql,valuesArr)
+    .then(data=>{
+        console.log(data)
+        response.redirect('/user');
+    }).catch(error => (console.log('Token ' + error)))
+
 
 function userPage(request, response) {
     const sql = `SELECT * FROM trips`;
@@ -115,6 +130,7 @@ function save(request, response) {
             response.redirect('/user');
         }).catch(error => (console.log(error)))
 }
+
 function searchPage(request, response) {
     response.render('search');
 }
@@ -252,4 +268,6 @@ function Location(city, info) {
 Location.all = [];
 function anyErrorHandler(error, req, res) {
     res.status(500).send(error);
+
 }
+
