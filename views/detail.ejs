@@ -34,6 +34,7 @@
                 <button class="user-buttons" id="updata-button">UpDate</button>
                 <br>
                 <form action="/delete?_method=Delete" method="POST">
+                    <input type="hidden" name="id"  value="<%=id%>">
                     <button class="user-buttons" id="delete-button">Delete</button>
                 </form>
             </div>
@@ -134,11 +135,9 @@
 
                     </div>
         </main>
+        
         <form action="">
-            <input type="hidden" name="id" id="id" value="<%=id%>">
-        </form>
-        <form action="">
-            <input type="hidden" name="id" id="id" value="<%=id%>">
+            <input type="hidden" name="id"  value="<%=id%>">
         </form>
         <%- include('partials/footer') %>
             <script src="https://code.jquery.com/jquery-3.2.1.js"></script>

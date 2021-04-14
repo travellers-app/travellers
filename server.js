@@ -50,29 +50,32 @@ app.delete('/delete', deleteTrip)
 app.get('/detail/:id', detailPage)
 function detailPage(request, response) {
     const id = request.params.id;
-    console.log(id);
     const sql = `SELECT * FROM trips WHERE id=$1`;
     client.query(sql, [id]).then(data => {
         const resultsDataBase = data.rows[0];
-        console.log(resultsDataBase)
         let allData;
         const sql2 = `SELECT * FROM trips`;
         client.query(sql2).then(data => {
             allData = data.rows
-            console.log(allData)
             const weather = arrayWeatherObject;
-            console.log(weather);
             arrayWeatherObject = [];
-            response.render('detail', { reviewResult: resultsDataBase, weather, allData });
+            response.render('detail', { reviewResult: resultsDataBase, weather, allData,id });
         })
     })
 }
 function deleteTrip(request, response) {
-    const id = 1;
-    const deleteSql = 'DELETE FROM trips WHERE id = $1'
-    client.query(deleteSql, [id]).then(data => {
-        response.redirect('/search');
-    });
+    const id = request.body.id;
+    if(id == 1){
+        const deleteSql1 = 'DELETE FROM trips'
+        client.query(deleteSql1).then(data => {
+            response.redirect('/user');
+        });
+    }else{
+        const deleteSql = 'DELETE FROM trips WHERE id = $1'
+        client.query(deleteSql, [id]).then(data => {
+            response.redirect('/user');
+        });
+    }
 }
 function aboutPage(request, response) {
     response.render('about');
@@ -90,7 +93,7 @@ function userPage(request, response) {
             const allData = data.rows
             const weather = arrayWeatherObject;
             arrayWeatherObject = [];
-            response.render('userpage', { reviewResult: resultsDataBase, weather, allData });
+            response.render('userpage', { reviewResult: resultsDataBase, weather, allData, id:resultsDataBase.id});
         }
     })
 }
