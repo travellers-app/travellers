@@ -6,46 +6,44 @@ let lon;
 let lat;
 
 $(document).ready(userFunction)
+
 $('#details-touristical').hide();
+
 $('#details-hotels').hide();
+
 $('#details-resturants').hide();
+
 $('#details-weather').hide();
+
 function userFunction() {
     $('#hotels-button').on('click', () => {
         $('#details-hotels').show();
         $('#details-resturants').hide();
         $('#details-touristical').hide();
         $('#details-weather').hide();
-        console.log('1111112')
     })
+
     $('#resturants-button').on('click', () => {
         $('#details-hotels').hide();
         $('#details-touristical').hide();
         $('#details-weather').hide();
         $('#details-resturants').show();
-
-        console.log('1111113');
     })
+
     $('#touristical-button').on('click', () => {
         $('#details-touristical').show();
         $('#details-hotels').hide();
         $('#details-resturants').hide();
-        $('details-weather').hide();
-        console.log('1111114');
-
     })
+
     $('#Weather-button').on('click', () => {
         $('#details-hotels').hide();
         $('#details-resturants').hide();
         $('#details-touristical').hide();
         $('#details-weather').show();
-
-
     })
-    $('#delete-button').on('click', () => {
 
-    })
-    $('.tripData').click((event)=>{
+    $('.tripData').click((event) => {
         event.preventDefault();
         let length = $('.tripData').children().prevObject.length;
         let index;
@@ -60,14 +58,16 @@ function userFunction() {
         }
         $('#detailDiv').empty();
         const temp = $('#detailTemp').html();
-        const source = {id:$('.tripData').eq(index).val()};
-        let detailForm = Mustache.render(temp, source); 
+        const source = { id: $('.tripData').eq(index).val() };
+        let detailForm = Mustache.render(temp, source);
         $('#detailDiv').append(detailForm);
         $('#detform').submit();
     })
 
 }
+
 $(document).ready(renderSearhPage)
+
 function renderSearhPage() {
     search_query;
     hotelAll = [];
@@ -84,6 +84,7 @@ function renderSearhPage() {
         getTouristic();
         getHotels();
     })
+
     $('#button').on('click', (event) => {
         event.preventDefault();
         $('#fromCity').val($('#from').val());
@@ -101,8 +102,6 @@ function renderSearhPage() {
                 index = 0;
             }
         }
-
-
         $('#hotel').val(hotelAll[index].name);
         $('#contact').val(hotelAll[index].contact)
         $('#checkin').val($('#start').val());
@@ -118,7 +117,6 @@ function renderSearhPage() {
                 index = 0;
             }
         }
-
         $('#returant').val(resturentAll[index].name);
         $('#resturantimg').val(resturentAll[index].img);
         $('#resturanturl').val(resturentAll[index].contact);
@@ -133,23 +131,13 @@ function renderSearhPage() {
                 index = 0;
             }
         }
-
         $('#touristic').val(tourAll[index].name);
         $('#touristicimg').val(tourAll[index].img);
         $('#discrp').val(tourAll[index].discription);
-        console.log($('#hotel').val(),
-            $('#contact').val(),
-            $('#checkin').val(),
-            $('#checkout').val(), $('#returant').val(),
-            $('#resturantimg').val(),
-            $('#resturanturl').val(), $('#touristic').val(),
-            $('#touristicimg').val(),
-            $('#discrp').val());
         $('#save-form').submit()
-
-
     })
 }
+
 function renderDetail(id) {
     const ajaxSettingsOne = {
         method: 'get',
@@ -178,6 +166,7 @@ function getLocation() {
             showError(error);
         });
 }
+
 function getWeather() {
     const ajaxSettingsOne = {
         method: 'get',
@@ -191,6 +180,7 @@ function getWeather() {
             showError(error);
         });
 }
+
 function getResturants() {
     const ajaxSettingsOne = {
         method: 'get',
@@ -207,6 +197,7 @@ function getResturants() {
             showError(error);
         });
 }
+
 function getTouristic() {
     const ajaxSettingsOne = {
         method: 'get',
@@ -233,6 +224,7 @@ function getTouristic() {
                 });
         });
 }
+
 function getHotels() {
     const ajaxSettingsOne = {
         method: 'get',
@@ -252,7 +244,6 @@ function getHotels() {
                 .then(result => {
                     result.forEach((data, idx) => {
                         new Hotel(data.picture, data.name, data.description, data.rate, data.contact, data.price, idx)
-
                     })
                 })
                 .catch(error => {
@@ -260,6 +251,7 @@ function getHotels() {
                 });
         });
 }
+
 function Hotel(img, name, discription, rate, contact, price, idx) {
     this.img = img,
         this.name = name,
@@ -277,6 +269,7 @@ Hotel.prototype.render = (source) => {
     let cardHtmlData = Mustache.render(cardTemplate, source);
     $('#hotel').append(cardHtmlData);
 }
+
 function Resturants(img, name, rate, contact, idx) {
     this.img = img,
         this.name = name,
@@ -292,6 +285,7 @@ Resturants.prototype.render = (source) => {
     let cardHtmlData = Mustache.render(cardTemplate, source);
     $('#returants').append(cardHtmlData);
 }
+
 function Tour(img, name, discription, rate, contact, price, idx) {
     this.img = img,
         this.name = name,

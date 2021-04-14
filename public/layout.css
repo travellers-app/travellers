@@ -81,7 +81,6 @@ h2 {
 
 }
 
-
 #user-data-container{
     display: flex;
     padding: 20px;
@@ -101,21 +100,6 @@ h2 {
     flex-direction: column;
   }
 
-
-
-
-
-
-
-
-
-
-/* -------------------------------------------------------user page finish---------------------------------------------- */
-
-
-
-
-
 label {
   box-sizing: border-box;
   border: black solid 1px;
@@ -129,7 +113,6 @@ fieldset {
 footer {
   height: 30%;
 }
-
 
 #serachDiv{
     margin: auto;
@@ -166,14 +149,6 @@ main{
   left: 40%;
 }
 
-
-
-
-
-
-
-
-/*------------------------------------------------- homePage---------------------------------------------------------  */
 .card img {
   width: 100%;
 }
@@ -183,8 +158,6 @@ main{
   margin-bottom: 5%;
   margin-top: 12px;
 }
-
-/*-------------------------------------Slider-------------------------------------------------------------------------*/
 
 #slide {
   height: 100%;
@@ -213,9 +186,11 @@ main{
   transition: opacity 1s ease;
   /* Display first child on load */
 }
+
 [data-am-fadeshow] .fs-slide:first-child {
   opacity: 1;
 }
+
 [data-am-fadeshow] .fs-quick-nav {
   position: absolute;
   bottom: 15px;
@@ -227,6 +202,7 @@ main{
   user-select: none;
   transform: translateX(-50%);
 }
+
 [data-am-fadeshow] .fs-quick-btn {
   display: inline-block;
   width: 15px;
@@ -238,6 +214,7 @@ main{
   background-color: rgba(255, 255, 255, 0.8);
   /* Set active state to first button on load */
 }
+
 [data-am-fadeshow] .fs-quick-btn:hover {
   opacity: 0.8;
 }
