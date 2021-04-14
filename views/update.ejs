@@ -4,9 +4,9 @@
 
     <body>
         <%- include('partials/header') %>
-            <main style="display: flex;flex-direction: column;background-color: white;">
+            <main style="display: flex;flex-direction: column;background-color: #d8e3e7;">
                 <div id="serachDiv">
-                    <form action="" style="position: relative;">
+                    <form action="" style="position: relative;" id="from-to-date">
                         <input id="from" class="searchInp" type="text" value="<%=fromCity%>">
                         <input id="to" class="searchInp" type="text" value="<%=city%>">
                         <input id="start" class="searchInp" type="date" value="<%=checkin%>">
@@ -15,78 +15,84 @@
                     </form>
                 </div>
                 <div id="resultDiv">
-                    <div style="height: 30px;margin-top: 20px;width:400px;display: flex;justify-content: center;">
-                        <p class="pheader">
-                            Hotels
-                        </p>
-                    </div>
-                    <div
-                        style="height: 30px;margin-top: 20px;width:400px;margin-left: 50px;margin-right: 50px;display: flex;justify-content: center;">
-                        <p class="pheader">
-                            Resturants
-                        </p>
-                    </div>
-                    <div style="height: 30px;margin-top: 20px;width:400px;display: flex;justify-content: center;">
-                        <p class="pheader">
-                            Tours
-                        </p>
-                    </div>
-                    <div class="resData" id="hotel">
-                        <template id="hotTemp" type="text/x-tmpl-mustache">
-                            <div class="parent">
-                                <div class="hotelemp">
-                                    <img class="hotelImg" src="{{img}}" alt="">
-                                    <p class="hotelpara">name: {{name}}</p>
-                                    <div class="hotelpara" style="text-align: left;">
-                                        <p>
-                                            {{discription}}
-                                        </p>
+                    <div class="card-of-cards">
+                        <div style="height: 30px;margin-top: 20px;width:400px;display: flex;justify-content: center;">
+                            <p class="pheader">
+                                Hotels
+                            </p>
+                        </div>
+                        <div class="resData" id="hotel">
+                            <template id="hotTemp" type="text/x-tmpl-mustache">
+                                <div class="parent">
+                                    <div class="hotelemp">
+                                        <img class="hotelImg" src="{{img}}" alt="">
+                                        <p class="hotelpara">name: {{name}}</p>
+                                        <div class="hotelpara" style="text-align: left;">
+                                            <p>
+                                                {{discription}}
+                                            </p>
+                                        </div>
+                                        <p class="hotelpara">rate: {{rate}}</p>
+                                        <p class="hotelpara">contact: <br> {{contact}}</p>
+                                        <p class="hotelpara">prcice: {{price}}</p>
                                     </div>
-                                    <p class="hotelpara">rate: {{rate}}</p>
-                                    <p class="hotelpara">contact: <br> {{contact}}</p>
-                                    <p class="hotelpara">prcice: {{price}}</p>
+                                    <label class="hotelbtu" for="chooseHotel">choose
+                                        <input type="radio" name="chooseHotel" class="hotel-box">
+                                    </label>
                                 </div>
-                                <label class="hotelbtu" for="chooseHotel">choose
-                                    <input type="radio" name="chooseHotel" class="hotel-box">
-                                </label>
-                            </div>
-                        </template>
+                            </template>
+                        </div>
                     </div>
-                    <div class="resData" id="returants" style="margin-left: 130px;margin-right: 130px;">
-                        <template id="resTemp" type="text/x-tmpl-mustache">
-                            <div class="parent">
-                                <div class="hotelemp">
-                                    <p class="hotelpara">name: {{name}}</p>
-                                    <img class="hotelImg" src="{{img}}" alt="">
-                                    <p class="hotelpara">rate: {{rate}}</p>
-                                    <p class="hotelpara">contact: <br> <a href="{{contact}}">{{name}}</a></p>
-                                </div>
-                                <label class="hotelbtu" for="chooseRes">choose
-                                    <input type="radio" name="chooseRes" class="resturent-box">
-                                </label>
-                            </div>
-                        </template>
-                    </div>
-                    <div class="resData" id="touristic">
-                        <template id="tourTemp" type="text/x-tmpl-mustache">
-                            <div class="parent">
-                                <div class="hotelemp">
-                                    <img class="hotelImg" src="{{img}}" alt="">
-                                    <p class="hotelpara">name: {{name}}</p>
-                                    <div class="hotelpara" style="text-align: left;">
-                                        <p>
-                                            {{discription}}
-                                        </p>
+                    <div class="card-of-cards">
+                        <div
+                            style="height: 30px;margin-top: 20px;width:400px;margin-left: 50px;margin-right: 50px;display: flex;justify-content: center;">
+                            <p class="pheader">
+                                Resturants
+                            </p>
+                        </div>
+                        <div class="resData" id="returants" style="margin-left: 130px;margin-right: 130px;">
+                            <template id="resTemp" type="text/x-tmpl-mustache">
+                                <div class="parent">
+                                    <div class="hotelemp">
+                                        <p class="hotelpara">name: {{name}}</p>
+                                        <img class="hotelImg" src="{{img}}" alt="">
+                                        <p class="hotelpara">rate: {{rate}}</p>
+                                        <p class="hotelpara">contact: <br> <a href="{{contact}}">{{name}}</a></p>
                                     </div>
-                                    <p class="hotelpara">rate: {{rate}}</p>
-                                    <p class="hotelpara">contact: <br> <a href="{{contact}}">{{name}}</a></p>
-                                    <p class="hotelpara">prcice: {{price}}</p>
+                                    <label class="hotelbtu" for="chooseRes">choose
+                                        <input type="radio" name="chooseRes" class="resturent-box">
+                                    </label>
                                 </div>
-                                <label class="hotelbtu" for="chooseTour">choose
-                                    <input type="radio" name="chooseTour" class="tour-box">
-                                </label>
-                            </div>
-                        </template>
+                            </template>
+                        </div>
+                    </div>
+                    <div class="card-of-cards">
+                        <div style="height: 30px;margin-top: 20px;width:400px;display: flex;justify-content: center;">
+                            <p class="pheader">
+                                Tours
+                            </p>
+                        </div>
+                        <div class="resData" id="touristic">
+                            <template id="tourTemp" type="text/x-tmpl-mustache">
+                                <div class="parent">
+                                    <div class="hotelemp">
+                                        <img class="hotelImg" src="{{img}}" alt="">
+                                        <p class="hotelpara">name: {{name}}</p>
+                                        <div class="hotelpara" style="text-align: left;">
+                                            <p>
+                                                {{discription}}
+                                            </p>
+                                        </div>
+                                        <p class="hotelpara">rate: {{rate}}</p>
+                                        <p class="hotelpara">contact: <br> <a href="{{contact}}">{{name}}</a></p>
+                                        <p class="hotelpara">prcice: {{price}}</p>
+                                    </div>
+                                    <label class="hotelbtu" for="chooseTour">choose
+                                        <input type="radio" name="chooseTour" class="tour-box">
+                                    </label>
+                                </div>
+                            </template>
+                        </div>
                     </div>
                 </div>
                 <button style="width:fit-content;align-self: center;" id="button">update</button>
