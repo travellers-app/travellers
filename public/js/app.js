@@ -7,7 +7,7 @@ let lat;
 
 $(document).ready(userFunction)
 
-$('#details-touristical').hide();
+$('#details-touristical').show();
 
 $('#details-hotels').hide();
 
