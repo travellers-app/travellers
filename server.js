@@ -1,5 +1,4 @@
 'use strict';
-
 require('dotenv').config();
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL;
@@ -15,7 +14,6 @@ const superagent = require("superagent");
 const cors = require("cors");
 const pg = require("pg");
 const methodOverride = require("method-override");
-const { request } = require('express');
 const app = express();
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -32,6 +30,7 @@ client.connect().then(() => {
 }).catch(error => {
     console.log("client connction faild");
 })
+let arrayWeatherObject = [];
 let lon;
 let lat;
 app.get('/', homePage);
@@ -45,15 +44,14 @@ app.get('/resturants', handleYelpRequest);
 app.get('/touristic', getTouristic); // 'token2' will redirect to this path and render tours
 app.get('/user', userPage);
 app.get('/about', aboutPage);
-
 app.post('/insert', save);
 app.delete('/delete', deleteTrip)
 app.get('/detail/:id', detailPage)
 app.post('/update', updatePage)
 app.put('/put', putPage)
+
 function updatePage(request, response) {
     const id = request.body.id
-    console.log(id)
     let fromCity;
     let city;
     let checkin;
@@ -67,6 +65,7 @@ function updatePage(request, response) {
         response.render('update', { id, fromCity, city, checkin, checkout })
     })
 }
+
 function putPage(request, response) {
     const id = request.body.id;
     const data = request.body;
@@ -79,6 +78,7 @@ function putPage(request, response) {
         response.redirect(`/detail/${id}`)
     })
 }
+
 function detailPage(request, response) {
     const id = request.params.id;
     const sql = `SELECT * FROM trips WHERE id=$1`;
@@ -94,6 +94,7 @@ function detailPage(request, response) {
         })
     })
 }
+
 function deleteTrip(request, response) {
     const id = request.body.id;
     if (id == 1) {
@@ -108,29 +109,24 @@ function deleteTrip(request, response) {
         });
     }
 }
+
 function aboutPage(request, response) {
     response.render('about');
 }
 
-//----------------- user page start ------------------------------------------------
 function save(request, response) {
     const sqlData = request.body;
-    console.log(request.body)
     const valuesArr = Object.values(sqlData)
-
     const sql = 'INSERT INTO trips (fromCity,city,lon,lat, hotel,contact,checkin,checkout,returant,resturantimg,resturanturl,touristic,touristicimg,discrp) VALUES ($1, $2, $3, $4, $5,$6,$7,$8,$9,$10,$11,$12,$13,$14) RETURNING *';
-    console.log('hiiiii')
     client.query(sql, valuesArr)
         .then(data => {
-            console.log(data)
             response.redirect('/user');
         }).catch(error => (console.log('Token ' + error)))
-
 }
+
 function userPage(request, response) {
     const sql = `SELECT * FROM trips`;
     client.query(sql).then(data => {
-        // console.log(data.rows);
         const resultsDataBase = data.rows[data.rowCount - 1];
         if (data.rowCount == 0) {
             response.render('search')
@@ -142,15 +138,7 @@ function userPage(request, response) {
         }
     })
 }
-//  app.delete('search/:id', (req,res)=>{
-//     let id = req.params.id;
-//     let SQL = 'DELETE FROM trips WHERE id=$1';
-//     client.query(SQL,[id]).then(result => {
-//         // console.log(result);
-//         res.redirect('/');
-//     })
-// })
-// ------------------user page finish ------------------------------------------------
+
 function save(request, response) {
     const sqlData = request.body;
     const valuesArr = Object.values(sqlData)
@@ -168,6 +156,7 @@ function searchPage(request, response) {
 function homePage(request, response) {
     response.render('main');
 }
+
 function getToken(request, response) {
     lon = request.query.lon;
     lat = request.query.lat;
@@ -190,17 +179,7 @@ function getHotels(request, response) {
         response.json(newHotel)
     }).catch(error => console.log(error))
 }
-function Hotels(offer) {
-    let desc = offer.hotel.description;
-    let image = offer.hotel.media;
-    let pay = offer.offers[0].price;
-    this.name = offer.hotel.name;
-    this.rate = offer.hotel.rating;
-    offer.hotel.contact ? this.contact = offer.hotel.contact.phone : this.contact = 'No Contact Info Available';
-    desc ? this.description = desc.text : this.description = 'No Description Available';
-    image ? this.picture = image[0].uri : this.picture = 'Media Unavailable';
-    this.price = pay.total + ' ' + pay.currency;
-}
+
 function getToken2(request, response) {
     lon = request.query.lon;
     lat = request.query.lat;
@@ -213,6 +192,7 @@ function getToken2(request, response) {
             response.redirect('/touristic');
         }).catch(error => (console.log('Token ' + error)))
 }
+
 function getTouristic(request, response) {
     const url = `https://test.api.amadeus.com/v1/shopping/activities?longitude=${lon}&latitude=${lat}&radius=5`;
     superagent.get(url).set('Authorization', `Bearer ${key}`).then(toursObj => {
@@ -222,15 +202,7 @@ function getTouristic(request, response) {
         response.json(newTour);
     }).catch(error => (console.log(error)));
 }
-function Tours(tour) {
-    let pay = tour.price;
-    this.name = tour.name;
-    this.description = tour.shortDescription;
-    this.rate = tour.rating;
-    tour.pictures ? this.picture = tour.pictures[0] : 'No Picture available';
-    this.booking_link = tour.bookingLink;
-    this.price = pay.amount + ' ' + pay.currencyCode;
-}
+
 function handleYelpRequest(req, res) {
     const city = req.query.city;
     const url = `https://api.yelp.com/v3/businesses/search?location=${city}`;
@@ -244,13 +216,7 @@ function handleYelpRequest(req, res) {
         })
         .catch((err) => anyErrorHandler(err, req, res));
 }
-function Yelp(yelpData) {
-    this.name = yelpData.name;
-    this.price = yelpData.price;
-    this.rating = yelpData.rating;
-    this.imgURL = yelpData.image_url;
-    this.url = yelpData.url;
-}
+
 function getWeather(request, response) {
     const city = request.query.city;
     let url = `https://api.weatherbit.io/v2.0/forecast/daily?city=${city}&limit=4&key=${WEATHER_API_KEY}`;
@@ -266,15 +232,7 @@ function getWeather(request, response) {
         response.send(arrayWeatherObject);
     })
 }
-let arrayWeatherObject = [];
-function Weather(city, temperature, descriptions, wind_speed, humidity) {
-    this.city = city;
-    this.temperature = temperature;
-    this.descriptions = descriptions;
-    this.wind_speed = wind_speed;
-    this.humidity = humidity;
-    arrayWeatherObject.push(this);
-}
+
 function getLocation(request, response) {
     const city = request.query.city;
     const url = `https://us1.locationiq.com/v1/search.php?key=${GEOCODE_API_KEY}&city=${city}&format=json&limit=1`;
@@ -287,6 +245,45 @@ function getLocation(request, response) {
         .catch((error) => {
             response.status(500).send('So sorry, something went wrong.');
         });
+}
+
+function Hotels(offer) {
+    let desc = offer.hotel.description;
+    let image = offer.hotel.media;
+    let pay = offer.offers[0].price;
+    this.name = offer.hotel.name;
+    this.rate = offer.hotel.rating;
+    offer.hotel.contact ? this.contact = offer.hotel.contact.phone : this.contact = 'No Contact Info Available';
+    desc ? this.description = desc.text : this.description = 'No Description Available';
+    image ? this.picture = image[0].uri : this.picture = 'Media Unavailable';
+    this.price = pay.total + ' ' + pay.currency;
+}
+
+function Tours(tour) {
+    let pay = tour.price;
+    this.name = tour.name;
+    this.description = tour.shortDescription;
+    this.rate = tour.rating;
+    tour.pictures ? this.picture = tour.pictures[0] : 'No Picture available';
+    this.booking_link = tour.bookingLink;
+    this.price = pay.amount + ' ' + pay.currencyCode;
+}
+
+function Yelp(yelpData) {
+    this.name = yelpData.name;
+    this.price = yelpData.price;
+    this.rating = yelpData.rating;
+    this.imgURL = yelpData.image_url;
+    this.url = yelpData.url;
+}
+
+function Weather(city, temperature, descriptions, wind_speed, humidity) {
+    this.city = city;
+    this.temperature = temperature;
+    this.descriptions = descriptions;
+    this.wind_speed = wind_speed;
+    this.humidity = humidity;
+    arrayWeatherObject.push(this);
 }
 function Location(city, info) {
     this.search_query = city;

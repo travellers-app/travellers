@@ -1,4 +1,5 @@
 
+
  /* navigation bar setup */
  /* HTML Nav Styles */
  /* HTML Nav Styles */
@@ -233,6 +234,7 @@ h2{
 }
 /*-------secreen---------------*/
 @media (min-width:960px) {
+
 .loginInput{
 height: 40px;
 width: 400px;
@@ -248,35 +250,33 @@ width: 50%;
 }
 
 #user-data-container{
-  /* border: sienna solid; */
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 #login-button{
 margin-left: 150px;
 
 }
+
 #user-page-main{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   height: 200vh;
   align-content: space-between;
-  /* border: springgreen solid; */
 }
+
 #user-data-buttons{
-  /* border:  solid white; */
   height: 100vh;
   width: 10%;
   order: 0;
-  /* margin: auto; */
 }
 
 .user-buttons{
   width: 200px;
   font-size: larger;
-  /* text-justify: center;  */
  border: solid black;
  margin:20px;
  text-align: center;
@@ -284,18 +284,18 @@ margin-left: 150px;
  padding: 0;
  
 }
+
 .details-container{
   display: flex;
   flex-flow: row wrap;
   width: 100%;
   height: 250px;
   background-color: transparent;
-  /* border: red solid; */
   justify-content: center;
   order: 2;
 }
+
 .detail-card{
-  /* border: burlywood solid; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -303,6 +303,7 @@ margin-left: 150px;
   align-items: center;
 
   background-color: transparent;
+
   height:70%;
   width: 90%;
   border: tomato solid;
@@ -312,39 +313,31 @@ margin-left: 150px;
 /* // Simple styling for message. */
 .flip-card {
   background-color: transparent;
-  /* width: 300px; */
-  /* height: 300px; */
-  /* perspective: 1000px; */
 }
 
 .flip-card-inner {
-  /* position: relative; */
   width: 100%;
   height: 30%;
   z-index: 900;
-
   text-align: center;
   transition: transform 0.6s;
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
-.flip-card-inner1{
 
+.flip-card-inner1{
   width: 100%;
   height: 45%;
   z-index: 900;
-
   text-align: center;
-  /* transition: transform 0.6s; */
   transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
+
 .flip-card:active .flip-card-inner {
   z-index: 900;
-
   transform: rotateY(180deg);
 }
-
 
 .flip-card-front, .flip-card-back {
   z-index: 900;
@@ -367,10 +360,8 @@ margin-left: 150px;
 }
 
 .cardUserPage{
-  /* border: solid yellow; */
   margin: 10px;
   width: 50%;
-  
 }
 
 #container-of-spans {
@@ -378,7 +369,6 @@ margin-left: 150px;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
-  /* border:  green solid; */
   width: 100%;
   order: 3;
 }
@@ -403,11 +393,11 @@ margin-left: 150px;
   z-index: 960;
 }
 
-.cardUserPage{
-  width: 50%;
-  
 
+.cardUserPage{
+  width: 50%; 
 } 
+
 #weather-div{
   border: solid snow;
   background-image: url('https://cdn.pixabay.com/photo/2012/06/08/06/19/clouds-49520_960_720.jpg');
@@ -419,13 +409,12 @@ h2{
   font-size: x-large;
   font-weight: bolder;
   font-family: cursive;
-  /* border: springgreen solid; */
 }
 
 #details-container{
   height: 100%;
-  /* border: springgreen solid; */
 }
+
 #Your-trips-details{
   font-size: 70px;
   font-family: 'Times New Roman', Times, serif;
@@ -441,9 +430,11 @@ h2{
   display: block;
  line-height: 30px;
 }
+
 }
 
  /* ------------------------------------------------user page finished----------------------------------------------------------- */
+
  menuitem{
     text-align: center;
  }
@@ -468,6 +459,7 @@ h2{
  menuitem:hover > menu {
     pointer-events:initial;
  }
+
  menuitem:hover > menu > menuitem,
  menu:hover > menuitem{
     opacity:1;
@@ -476,9 +468,7 @@ h2{
     transform:translateX(100%);
     top:0; right:0;
  }
- /* User Styles Below Not Required */
- /* User Styles Below Not Required */
- /* User Styles Below Not Required */
+
  nav{
     align-self: center;
     width: 45%;
@@ -562,9 +552,6 @@ nav a{
     opacity: 1;
  }
 
-
-/* navigation bar setup */
-
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500,300,700);
 
 * {
@@ -599,13 +586,9 @@ section {
   vertical-align: top;
 }
 
-/* Footer left */
-
 .footer-distributed .footer-left{
   width: 40%;
 }
-
-/* The company logo */
 
 .footer-distributed h3{
   color:  #ffffff;
@@ -616,8 +599,6 @@ section {
 .footer-distributed h3 span{
   color:  lightseagreen;
 }
-
-/* Footer links */
 
 .footer-distributed .footer-links{
   color:  #ffffff;
