@@ -81,7 +81,6 @@ h2 {
 
 }
 
-
 #user-data-container{
     display: flex;
     padding: 20px;
@@ -101,21 +100,6 @@ h2 {
     flex-direction: column;
   }
 
-
-
-
-
-
-
-
-
-
-/* -------------------------------------------------------user page finish---------------------------------------------- */
-
-
-
-
-
 label {
   box-sizing: border-box;
   border: black solid 1px;
@@ -130,14 +114,13 @@ footer {
   height: 30%;
 }
 
-
 #serachDiv{
     margin: auto;
     height: 365px;
     width: 100%;
     box-sizing: border-box;
     border: black solid 1px;
-    background-image: url(http://www.hustlermoneyblog.com/wp-content/uploads/2016/08/Travel-Background.png);
+    background-image: url(https://i.pinimg.com/originals/a6/db/41/a6db418f8f51da21c84a9e4e7360a14c.jpg);
     background-size: 100% 100%;
     background-repeat: no-repeat;
     display: flex;
@@ -166,14 +149,6 @@ main{
   left: 40%;
 }
 
-
-
-
-
-
-
-
-/*------------------------------------------------- homePage---------------------------------------------------------  */
 .card img {
   width: 100%;
 }
@@ -183,8 +158,6 @@ main{
   margin-bottom: 5%;
   margin-top: 12px;
 }
-
-/*-------------------------------------Slider-------------------------------------------------------------------------*/
 
 #slide {
   height: 100%;
@@ -213,9 +186,11 @@ main{
   transition: opacity 1s ease;
   /* Display first child on load */
 }
+
 [data-am-fadeshow] .fs-slide:first-child {
   opacity: 1;
 }
+
 [data-am-fadeshow] .fs-quick-nav {
   position: absolute;
   bottom: 15px;
@@ -227,6 +202,7 @@ main{
   user-select: none;
   transform: translateX(-50%);
 }
+
 [data-am-fadeshow] .fs-quick-btn {
   display: inline-block;
   width: 15px;
@@ -238,6 +214,7 @@ main{
   background-color: rgba(255, 255, 255, 0.8);
   /* Set active state to first button on load */
 }
+
 [data-am-fadeshow] .fs-quick-btn:hover {
   opacity: 0.8;
 }
@@ -1282,8 +1259,14 @@ text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: white;
+    background-color: #d8e3e7;
     flex-wrap: wrap;
+}
+
+.card-of-cards{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .pheader{
@@ -1298,7 +1281,7 @@ text-align: center;
 .resData{
     width:300px;
     height: 400px;
-    background-color:cyan;
+    background-color:#51c4d3;
     overflow-y: scroll;
     display: flex;
     justify-content: center;
@@ -1325,7 +1308,7 @@ text-align: center;
     flex-direction: column;
     border-radius: 20px;
     overflow-x: hidden;
-    background-color: darkcyan;
+    background-color: #126e82;
 }
 .hotelImg{
     align-self: center;
@@ -1337,7 +1320,7 @@ text-align: center;
     text-align: center;
     width: 80%;
     margin-top: 5px;
-    background-color: aqua;
+    background-color: #d8e3e7;
     align-self: center;
 }
 .hotelbtu{

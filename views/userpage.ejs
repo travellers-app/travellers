@@ -24,33 +24,33 @@
                 <br>
                 <br>
                 <button class="user-buttons" id="Weather-button">Weather</button>
-                <br>
                 <button class="user-buttons" id="hotels-button">Hotels</button>
-                <br>
                 <button class="user-buttons" id="resturants-button">resturants </button>
-                <br>
                 <button class="user-buttons" id="touristical-button">points of intersts </button>
-                <br>
+
                 <form action="/update" method="post"> 
                     <input type="hidden" name="id"  value="<%=id%>">
+
                     <button class="user-buttons" id="updata-button">UpDate</button>
                 </form>
                 <br>
                 <form action="/delete?_method=Delete" method="POST">
-                    <input type="hidden" name="id"  value="<%=id%>">
+                    <input type="hidden" name="id" value="<%=id%>">
                     <button class="user-buttons" id="delete-button">Delete</button>
                 </form>
-                <% allData.forEach(row=>{ %>
-                    <label for="id">
-                        <input type="radio" name="id" value="<%=row.id%>" class="tripData">
-                    </label>
-                <% }) %>
             </div>
             <div id="red-pu">
                 <div id="user-data-container">
                     <h2 id="Your-trips-details">
                         Your trips details
                     </h2>
+                    <div id="radioTrip">
+                    <% allData.forEach(row=>{ %>
+                        <label for="id"> 
+                            <input type="radio" name="id" value="<%=row.id%>" class="tripData">
+                        </label>
+                    <% }) %>
+                </div>
                 </div>
                 <div id="container-of-spans">
                     <section class="detail-card flip-card" id="details-weather">
@@ -74,70 +74,65 @@
                                         <% }) %>
                                 </ul>
                             </div>
-                            <div class="flip-card-back">
-                                <img src="https://cdn.pixabay.com/photo/2012/06/08/06/19/clouds-49520_960_720.jpg"
-                                    alt="">
-                            </div>
-                        </div>
                     </section>
                     <section class="detail-card flip-card" id="details-hotels">
                         <div class="cardUserPage flip-card-inner">
-                            <div class="flip-card-front">
-                                <h3>
+                            <div class="flip-card-front" id="flipFront">
+                                <br><br><br><br><br><br><br><br><br><br>
+                                <h3 class="h3">
                                     <%= reviewResult.hotel %>
-                                </h3>
-                                <p>time arrive <%= reviewResult.checkin %>
-                                </p>
-                                <p>time leave <%= reviewResult.checkout %>
-                                </p>
-                                <p>time leave <%= reviewResult.contact %>
+                                </h3><br>
+                                <p>TIME ARRIVE : <%= reviewResult.checkin %>
+                                </p><br>
+                                <p>TIME LEAVE : <%= reviewResult.checkout %>
+                                </p><br>
+                                <p>CONTACT :  <%= reviewResult.contact %>
                                 </p>
                             </div>
-                            <div class="flip-card-back">
-                                <h2> </h2>
-                            </div>
-                        </div>
                     </section>
                     <section class="detail-card flip-card" id="details-resturants">
-                        <div id="resturants-card" class="cardUserPage flip-card-inner">
+                        <div id="resturants-card" class="cardUserPage flip-card-inner" >
                             <div class="flip-card-front">
-                                <h3>
+                                <h3  class="h3">
                                     <%= reviewResult.returant %>
                                 </h3>
-                                <img src="<%= reviewResult.resturantimg %>">
+                                <img src="<%= reviewResult.resturantimg %>" id="imgRES">
                             </div>
                             <div class="flip-card-back">
                                 <h2> </h2>
                             </div>
                         </div>
                     </section>
-                    <section class="detail-card flip-card" id="details-resturants">
+                    <section class="detail-card flip-card" id="details-touristical">
                         <div id="resturants-card" class="cardUserPage flip-card-inner">
                             <div class="flip-card-front">
-                                <h3>
+                                <h3  class="h3">
                                     <%= reviewResult.touristic %>
                                 </h3>
-                                <img src="<%= reviewResult.touristicimg %>">
+                                <img src="<%= reviewResult.touristicimg %>" id="imgRES1">
+                                
+                            </div>
+                            <div class="flip-card-back"  id="pragraghTouris">
+                                <br><br> <br> <br> <br>  <br>  <br>  <br> <br> <br>
+                                <h3  class="h3">
+                                    <%= reviewResult.touristic %>
+                                </h3>
                                 <p>
                                     <%= reviewResult.discrp %>
                                 </p>
                             </div>
-                            <div class="flip-card-back">
-                                <h2> </h2>
-                            </div>
                         </div>
                     </section>
                 </div>
+                
             </div>
-            </div>
-            
                     <template id="detailTemp" type="text/x-tmpl-mustache">
                         <form id="detform" action="/detail/{{{id}}}" method='get'>
                         </form>
                     </template>
                     <div id="detailDiv">
 
-                    </div>
+            </div>
         </main>
         <%- include('partials/footer') %>
             <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
