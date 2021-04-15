@@ -170,7 +170,7 @@ ontainer{
 #pragraghTouris{
   width: 200%;
   height: 50%;
-  border: red solid;
+  /* border: red solid; */
   margin-top: -66px;
   margin-left: -70px;
   text-decoration: none;
